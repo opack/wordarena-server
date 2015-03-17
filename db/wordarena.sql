@@ -2,10 +2,10 @@
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Mar 17 Mars 2015 à 00:00
--- Version du serveur :  5.6.17
--- Version de PHP :  5.5.12
+-- Host: 127.0.0.1
+-- Generation Time: Mar 17, 2015 at 03:52 PM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `wordarena`
+-- Database: `wordarena`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `blessings`
+-- Table structure for table `blessings`
 --
 
 CREATE TABLE IF NOT EXISTS `blessings` (
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `blessings` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `game`
+-- Table structure for table `game`
 --
 
 CREATE TABLE IF NOT EXISTS `game` (
@@ -44,8 +44,8 @@ CREATE TABLE IF NOT EXISTS `game` (
   `type_id` varchar(1) NOT NULL COMMENT 'Type de partie',
   `cur_round` int(11) NOT NULL COMMENT 'Round courant',
   `cur_turn` int(11) NOT NULL COMMENT 'Tour courant',
-  `cur_player_ox` int(11) NOT NULL COMMENT 'Numéro d''ordre du joueur courant',
-  `first_player_ox` int(11) NOT NULL COMMENT 'Numéro d''ordre du premier joueur du round',
+  `cur_player` int(11) NOT NULL COMMENT 'Numéro d''ordre du joueur courant',
+  `first_player` int(11) NOT NULL COMMENT 'Numéro d''ordre du premier joueur du round',
   `game_over` tinyint(1) NOT NULL COMMENT 'Indique si la partie est terminée',
   `arena` blob NOT NULL COMMENT 'JSON de l''arène au moment où la partie a été sauvegardée',
   PRIMARY KEY (`id`)
@@ -54,7 +54,61 @@ CREATE TABLE IF NOT EXISTS `game` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `player`
+-- Table structure for table `game_chats`
+--
+
+CREATE TABLE IF NOT EXISTS `game_chats` (
+  `game_id` int(11) NOT NULL,
+  `time` datetime NOT NULL,
+  `message` int(255) NOT NULL,
+  PRIMARY KEY (`game_id`,`time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Les messages échangés entre les joueurs';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `game_last_play`
+--
+
+CREATE TABLE IF NOT EXISTS `game_last_play` (
+  `game_id` int(11) NOT NULL,
+  `place` int(11) NOT NULL COMMENT 'Ordre de sélection de la lettre',
+  `cell_x` int(11) NOT NULL COMMENT 'Abscisse de la cellule jouée',
+  `cell_y` int(11) NOT NULL COMMENT 'Ordonnée de la cellule jouée',
+  PRIMARY KEY (`game_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Dernières cellules sélectionnées, dans l''ordre.';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `game_players`
+--
+
+CREATE TABLE IF NOT EXISTS `game_players` (
+  `game_id` int(11) NOT NULL,
+  `player_id` int(11) NOT NULL,
+  `place` int(11) NOT NULL COMMENT 'Ordre de jeu du joueur (premier à jouer, le second...)',
+  PRIMARY KEY (`game_id`,`player_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Les joueurs participant à une partie';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `game_words_played`
+--
+
+CREATE TABLE IF NOT EXISTS `game_words_played` (
+  `game_id` int(11) NOT NULL,
+  `time` datetime NOT NULL,
+  `player_id` int(11) NOT NULL,
+  `word_id` int(11) NOT NULL,
+  PRIMARY KEY (`game_id`,`time`,`player_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Les mots précédemment joués, dans l''ordre';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `player`
 --
 
 CREATE TABLE IF NOT EXISTS `player` (
@@ -70,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `player` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `player_blessings`
+-- Table structure for table `player_blessings`
 --
 
 CREATE TABLE IF NOT EXISTS `player_blessings` (
@@ -82,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `player_blessings` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `titles`
+-- Table structure for table `titles`
 --
 
 CREATE TABLE IF NOT EXISTS `titles` (
@@ -91,6 +145,19 @@ CREATE TABLE IF NOT EXISTS `titles` (
   `nb_required_stars` int(11) NOT NULL DEFAULT '0' COMMENT 'Nombre d''étoiles requises pour obtenir le titre',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Titre gagné par le joueur';
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `words`
+--
+
+CREATE TABLE IF NOT EXISTS `words` (
+  `id` int(11) NOT NULL,
+  `word` varchar(255) NOT NULL COMMENT 'Le mot (en majuscules)',
+  `status` int(11) NOT NULL COMMENT 'Indique si le mot est valide (V), en attente de validation (P) ou supprimé (R)',
+  `version` int(11) NOT NULL COMMENT 'Indique la version dans laquelle a eut lieu la dernière modification de status'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Dictionnaire contenant les mots existants';
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
