@@ -2,10 +2,10 @@
 -- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 17, 2015 at 03:52 PM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
+-- Client :  127.0.0.1
+-- Généré le :  Mar 17 Mars 2015 à 23:54
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `wordarena`
+-- Base de données :  `wordarena`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blessings`
+-- Structure de la table `blessings`
 --
 
 CREATE TABLE IF NOT EXISTS `blessings` (
@@ -35,10 +35,10 @@ CREATE TABLE IF NOT EXISTS `blessings` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `game`
+-- Structure de la table `games`
 --
 
-CREATE TABLE IF NOT EXISTS `game` (
+CREATE TABLE IF NOT EXISTS `games` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `creation_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Heure de création de la partie',
   `type_id` varchar(1) NOT NULL COMMENT 'Type de partie',
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `game` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `game_chats`
+-- Structure de la table `game_chats`
 --
 
 CREATE TABLE IF NOT EXISTS `game_chats` (
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `game_chats` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `game_last_play`
+-- Structure de la table `game_last_play`
 --
 
 CREATE TABLE IF NOT EXISTS `game_last_play` (
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `game_last_play` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `game_players`
+-- Structure de la table `game_players`
 --
 
 CREATE TABLE IF NOT EXISTS `game_players` (
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `game_players` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `game_words_played`
+-- Structure de la table `game_words_played`
 --
 
 CREATE TABLE IF NOT EXISTS `game_words_played` (
@@ -108,10 +108,10 @@ CREATE TABLE IF NOT EXISTS `game_words_played` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `player`
+-- Structure de la table `players`
 --
 
-CREATE TABLE IF NOT EXISTS `player` (
+CREATE TABLE IF NOT EXISTS `players` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identifiant unique de joueur',
   `pseudo` varchar(25) NOT NULL COMMENT 'Pseudonyme',
   `title_id` int(11) NOT NULL COMMENT 'Identifiant du titre actuellement possédé',
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `player` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `player_blessings`
+-- Structure de la table `player_blessings`
 --
 
 CREATE TABLE IF NOT EXISTS `player_blessings` (
@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `player_blessings` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `titles`
+-- Structure de la table `titles`
 --
 
 CREATE TABLE IF NOT EXISTS `titles` (
@@ -149,7 +149,30 @@ CREATE TABLE IF NOT EXISTS `titles` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `words`
+-- Structure de la table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `fullname` varchar(50) NOT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `email` varchar(60) DEFAULT NULL,
+  `mobile` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `users`
+--
+
+INSERT INTO `users` (`id`, `fullname`, `address`, `email`, `mobile`) VALUES
+(2, 'Séverine Chaibriant', '5 PL ACACIAS\r\n77420 CHAMPS SUR MARNE', 'severine.chaibriant@gmail.com', '0689162634'),
+(3, 'Full Name', 'Test', 'test@gmail.com', '12411515');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `words`
 --
 
 CREATE TABLE IF NOT EXISTS `words` (

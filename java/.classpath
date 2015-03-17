@@ -1,0 +1,18 @@
+<classpath>
+  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
+  <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
+  <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar" sourcepath="M2_REPO/junit/junit/3.8.1/junit-3.8.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/mybatis/mybatis/3.2.8/mybatis-3.2.8.jar" sourcepath="M2_REPO/org/mybatis/mybatis/3.2.8/mybatis-3.2.8-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/C:/Users/Didier/.m2/repository/org/mybatis/mybatis/3.2.8/mybatis-3.2.8-javadoc.jar!/" name="javadoc_location"/>
+      <attribute value="/WEB-INF/lib" name="org.eclipse.jst.component.dependency"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/mysql/mysql-connector-java/5.1.34/mysql-connector-java-5.1.34.jar">
+    <attributes>
+      <attribute value="/WEB-INF/lib" name="org.eclipse.jst.component.dependency"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+</classpath>

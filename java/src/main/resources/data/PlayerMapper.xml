@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.slamdunk.wordarena.server.data.player.PlayerDAO">
+    	<select id="getAllPlayers" resultType="Player">
+    	    SELECT
+    	    	pseudo,
+    	    	title_id as "titleId",
+    	    	score
+    	    FROM players
+    	</select>
+    	
+    	<select id="getPlayerById" resultType="Player">
+    	    SELECT
+    	    	pseudo,
+    	    	title_id as "titleId",
+    	    	score
+    	    FROM players
+    	    WHERE id = #{id}
+    	</select>
+    	
+    	<insert id="doCreatePlayer">
+    		INSERT INTO players (pseudo, title_id, score)
+    		VALUES (#{pseudo},#{titleId},#{score})
+    	</insert>
+    	
+    	<update id="doUpdatePlayer">
+    		UPDATE players
+    		SET pseudo=#{pseudo}, title_id=#{titleId}, score=#{score}
+    		WHERE id=#{id}
+    	</update>
+    	
+    	<delete id="doDeletePlayer">
+			DELETE FROM players
+			WHERE id=#{id}
+		</delete>
+</mapper>

@@ -3,12 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<properties resource="org/mybatis/example/config.properties">
-		<property name="driver" value=""/>
-		<property name="url" value=""/>
-		<property name="username" value="wordarena"/>
-		<property name="password" value="wordarena"/>
-	</properties>
+   	<properties resource="data/database.properties"/>
+   	
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC"/>
@@ -20,7 +16,13 @@
 			</dataSource>
 		</environment>
 	</environments>
+	
+	<typeAliases>
+	    <typeAlias alias="Player" type="com.slamdunk.wordarena.server.data.player.PlayerVO"/>
+	</typeAliases>
+	
 	<mappers>
-		<mapper resource="org/mybatis/example/BlogMapper.xml"/>
+		<mapper resource="data/PlayerMapper.xml"/>
+		<mapper resource="data/UserMapper.xml"/>
 	</mappers>
 </configuration>
