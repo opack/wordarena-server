@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 17 Mars 2015 à 23:54
+-- Généré le :  Mer 18 Mars 2015 à 22:58
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -30,7 +30,25 @@ CREATE TABLE IF NOT EXISTS `blessings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `blessing` varchar(50) NOT NULL COMMENT 'Bénédiction',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Bénédictions que peut gagner un joueur' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Bénédictions que peut gagner un joueur' AUTO_INCREMENT=13 ;
+
+--
+-- Contenu de la table `blessings`
+--
+
+INSERT INTO `blessings` (`id`, `blessing`) VALUES
+(1, 'venus'),
+(2, 'phebus'),
+(3, 'mars'),
+(4, 'diane'),
+(5, 'minerve'),
+(6, 'pluton'),
+(7, 'bacchus'),
+(8, 'vulcain'),
+(9, 'junon'),
+(10, 'mercure'),
+(11, 'neptune'),
+(12, 'jupiter');
 
 -- --------------------------------------------------------
 
@@ -145,6 +163,18 @@ CREATE TABLE IF NOT EXISTS `titles` (
   `nb_required_stars` int(11) NOT NULL DEFAULT '0' COMMENT 'Nombre d''étoiles requises pour obtenir le titre',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Titre gagné par le joueur';
+
+--
+-- Contenu de la table `titles`
+--
+
+INSERT INTO `titles` (`id`, `title`, `nb_required_stars`) VALUES
+(0, 'provocator', 0),
+(1, 'thrace', 0),
+(2, 'mirmillon', 0),
+(3, 'homaque', 0),
+(4, 'secutor', 0),
+(5, 'retiaire', 0);
 
 -- --------------------------------------------------------
 

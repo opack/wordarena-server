@@ -3,36 +3,81 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.slamdunk.wordarena.server.data.player.PlayerDAO">
-    	<select id="getAllPlayers" resultType="Player">
-    	    SELECT
-    	    	pseudo,
-    	    	title_id as "titleId",
-    	    	score
-    	    FROM players
-    	</select>
-    	
-    	<select id="getPlayerById" resultType="Player">
-    	    SELECT
-    	    	pseudo,
-    	    	title_id as "titleId",
-    	    	score
-    	    FROM players
-    	    WHERE id = #{id}
-    	</select>
-    	
-    	<insert id="doCreatePlayer">
-    		INSERT INTO players (pseudo, title_id, score)
-    		VALUES (#{pseudo},#{titleId},#{score})
-    	</insert>
-    	
-    	<update id="doUpdatePlayer">
-    		UPDATE players
-    		SET pseudo=#{pseudo}, title_id=#{titleId}, score=#{score}
-    		WHERE id=#{id}
-    	</update>
-    	
-    	<delete id="doDeletePlayer">
-			DELETE FROM players
-			WHERE id=#{id}
-		</delete>
+    <resultMap id="PlayerMap" type="Player">
+        <constructor>
+			<idArg column="player_id" javaType="long"/>
+		</constructor>
+		<result property="pseudo" column="player_pseudo"/>
+		<result property="score" column="player_pseudo"/>
+		
+		<association property="title" javaType="Title">
+			<id property="id" column="title_id"/>
+			<result property="title" column="title_title"/>
+		</association>
+		
+		<collection property="blessings" ofType="Blessing">
+		    <id property="id" column="post_id"/>
+		    <result property="blessing" column="blessing_blessing"/>
+		</collection>
+	</resultMap>
+    <select id="getPlayerById2" resultMap="PlayerMap">
+   	    SELECT
+   	    	players.id			as player_id,
+   	    	players.pseudo		as player_pseudo,
+   	    	players.score		as player_score,
+   	    	titles.id			as title_id,
+   	    	titles.title		as title_title,
+   	    	blessings.id		as blessing_id,
+   	    	blessings.blessing	as blessing_blessing
+   	    FROM players
+   	    	LEFT OUTER JOIN titles ON titles.id = players.title_id
+   	    	LEFT OUTER JOIN player_blessings ON player_blessings.player_id = players.id
+   	    	LEFT OUTER JOIN blessings ON blessings.id = player_blessings.blessing_id
+   	    WHERE players.id = #{id}
+   	</select>
+    
+    <select id="getAllPlayers" resultType="Player">
+		SELECT
+   	    	players.id,
+   	    	players.pseudo,
+   	    	titles.title,
+   	    	players.score
+   	    FROM players, titles
+   	    WHERE titles.id = players.title_id
+   	</select>
+   	
+    <select id="getPlayerById" resultType="Player">
+   	    SELECT
+   	    	players.id,
+   	    	players.pseudo,
+   	    	titles.title,
+   	    	players.score
+   	    FROM players, titles
+   	    WHERE players.id = #{id}
+   	    AND titles.id = players.title_id
+   	</select>
+    
+   	<insert id="doCreatePlayer" useGeneratedKeys="true" keyProperty="id">
+   	    <!-- On récupère d'abord l'identifiant du libellé du titre associé, afin
+   	    qu'en base on stocke un id, mais qu'on manipule un libellé en Java -->
+   		INSERT INTO players (pseudo, title_id, score)
+   		VALUES (#{pseudo},
+   			(SELECT id	FROM titles WHERE title = #{title}),
+   			#{score})
+   	</insert>
+   	
+   	<update id="doUpdatePlayer">
+   	    <!-- On récupère d'abord l'identifiant du libellé du titre associé, afin
+   	    qu'en base on stocke un id, mais qu'on manipule un libellé en Java -->
+   		UPDATE players
+   		SET pseudo=#{pseudo},
+   			title_id=(SELECT id	FROM titles WHERE title = #{title}),
+			score=#{score}
+   		WHERE id=#{id}
+   	</update>
+   	
+   	<delete id="doDeletePlayer">
+		DELETE FROM players
+		WHERE id=#{id}
+	</delete>
 </mapper>
