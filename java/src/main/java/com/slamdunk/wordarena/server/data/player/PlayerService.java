@@ -14,40 +14,60 @@ import com.slamdunk.wordarena.server.data.player.PlayerVO;
 public class PlayerService {
 	public List<PlayerVO> getPlayers() throws Exception{
 		SqlSession session = ConnectionFactory.getSession().openSession();
-			PlayerDAO dao =session.getMapper(PlayerDAO.class);
-			List<PlayerVO> Players= dao.getAllPlayers();
+		
+		PlayerDAO dao =session.getMapper(PlayerDAO.class);
+		List<PlayerVO> players= dao.getAllPlayers();
+		
 		session.close();
-		return Players;
+		return players;
 	}
 	public PlayerVO getPlayerById(long id) throws Exception{
 		SqlSession session = ConnectionFactory.getSession().openSession();
-			PlayerDAO dao =session.getMapper(PlayerDAO.class);
-			PlayerVO Player =dao.getPlayerById(id);
+		
+		PlayerDAO dao =session.getMapper(PlayerDAO.class);
+		PlayerVO player =dao.getPlayerById(id);
+		
 		session.close();
-		return Player;
+		return player;
 	}
-	public PlayerVO createPlayer(PlayerVO vo) throws Exception{
+	public int createPlayer(PlayerVO vo) throws Exception{
 		SqlSession session = ConnectionFactory.getSession().openSession();
-			PlayerDAO dao =session.getMapper(PlayerDAO.class);
-			dao.doCreatePlayer(vo);
+		
+		PlayerDAO dao =session.getMapper(PlayerDAO.class);
+		int count = dao.doCreatePlayer(vo);
+			
 		session.commit();
 		session.close();
-		return vo;
+		return count;
 	}
-	public PlayerVO updatePlayer(PlayerVO vo) throws Exception{
+	public int updatePlayer(PlayerVO vo) throws Exception{
 		SqlSession session = ConnectionFactory.getSession().openSession();
-			PlayerDAO dao =session.getMapper(PlayerDAO.class);
-			dao.doUpdatePlayer(vo);
+		
+		PlayerDAO dao =session.getMapper(PlayerDAO.class);
+		int count = dao.doUpdatePlayer(vo);
+		
 		session.commit();
 		session.close();
-		return vo;
+		return count;
 	}
 	public int deletePlayer(PlayerVO vo) throws Exception{
 		SqlSession session = ConnectionFactory.getSession().openSession();
-			PlayerDAO dao =session.getMapper(PlayerDAO.class);
-			int cnt= dao.doDeletePlayer(vo);
+		
+		PlayerDAO dao =session.getMapper(PlayerDAO.class);
+		int count= dao.doDeletePlayer(vo);
+		
 		session.commit();
 		session.close();
-		return cnt;
+		return count;
+	}
+	public int deletePlayer(long id) throws Exception{
+		SqlSession session = ConnectionFactory.getSession().openSession();
+		
+		PlayerDAO dao = session.getMapper(PlayerDAO.class);
+		int count = dao.doDeletePlayer(id);
+		
+		session.commit();
+		session.close();
+		return count;
 	}
 }

@@ -2,19 +2,20 @@ package com.slamdunk.wordarena.server.data.player;
 
 import java.io.Serializable;
 
-public class PlayerVO implements Serializable {
+import com.slamdunk.wordarena.server.data.title.TitleVO;
 
+public class PlayerVO implements Serializable {
 	private static final long serialVersionUID = 1402370983670448581L;
 	
-	private int id;
+	private long id;
 	private String pseudo;
-	private int titleId;	// TODO A REMPLACER PAR LA VRAIE RECUP DU TITRE !!!
+	private TitleVO title;
 	private int score;
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getPseudo() {
@@ -23,11 +24,11 @@ public class PlayerVO implements Serializable {
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
 	}
-	public int getTitleId() {
-		return titleId;
+	public TitleVO getTitle() {
+		return title;
 	}
-	public void setTitleId(int titleId) {
-		this.titleId = titleId;
+	public void setTitle(TitleVO title) {
+		this.title= title;
 	}
 	public int getScore() {
 		return score;
@@ -39,7 +40,7 @@ public class PlayerVO implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
 	@Override
@@ -57,7 +58,7 @@ public class PlayerVO implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "PlayerVO [id=" + id + ", pseudo=" + pseudo + ", title=" + titleId
+		return "PlayerVO [id=" + id + ", pseudo=" + pseudo + ", title=" + title
 				+ ", score=" + score + "]";
 	}
 }

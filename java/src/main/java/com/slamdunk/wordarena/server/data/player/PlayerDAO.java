@@ -17,5 +17,7 @@ public interface PlayerDAO {
 	public int doUpdatePlayer(PlayerVO vo) throws Exception; 
 	
 	public int doDeletePlayer(PlayerVO vo) throws Exception;  
+	
+	public int doDeletePlayer(long id) throws Exception;
 
 }
