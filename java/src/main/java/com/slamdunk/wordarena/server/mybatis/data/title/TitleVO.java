@@ -1,4 +1,4 @@
-package com.slamdunk.wordarena.server.data.title;
+package com.slamdunk.wordarena.server.mybatis.data.title;
 
 import java.io.Serializable;
 

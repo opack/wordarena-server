@@ -1,12 +1,12 @@
-package com.slamdunk.wordarena.server.data.user.bo;
+package com.slamdunk.wordarena.server.mybatis.data.user.bo;
 
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.slamdunk.wordarena.server.data.ConnectionFactory;
-import com.slamdunk.wordarena.server.data.user.dao.UserDAO;
-import com.slamdunk.wordarena.server.data.user.vo.UserVO;
+import com.slamdunk.wordarena.server.mybatis.data.ConnectionFactory;
+import com.slamdunk.wordarena.server.mybatis.data.user.dao.UserDAO;
+import com.slamdunk.wordarena.server.mybatis.data.user.vo.UserVO;
 
 public class UserBO {
 

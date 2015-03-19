@@ -1,10 +1,10 @@
 package com.slamdunk.wordarena.server;
 
-import com.slamdunk.wordarena.server.data.player.PlayerService;
-import com.slamdunk.wordarena.server.data.player.PlayerVO;
-import com.slamdunk.wordarena.server.data.title.TitleVO;
-import com.slamdunk.wordarena.server.data.user.bo.UserBO;
-import com.slamdunk.wordarena.server.data.user.vo.UserVO;
+import com.slamdunk.wordarena.server.mybatis.data.player.PlayerService;
+import com.slamdunk.wordarena.server.mybatis.data.player.PlayerVO;
+import com.slamdunk.wordarena.server.mybatis.data.title.TitleVO;
+import com.slamdunk.wordarena.server.mybatis.data.user.bo.UserBO;
+import com.slamdunk.wordarena.server.mybatis.data.user.vo.UserVO;
 
 public class TestMyBatis {
 	public static void main(String[] args) throws Exception {

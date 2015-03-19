@@ -1,56 +1,8 @@
-Collections de la base
-¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-	players* : Joueurs qui participe à des parties. Il y a une relation de 1-1 avec un utilisateur.
-	games : Parties
-	dictionary* : Les mots du dictionnaire
-* Pour les documents contenus dans les collections players et dictionary, tester si on peut mettre directement dans la collection une clé correspondant au mot ou au pseudo, et en valeur le document qui définit les propriétés du mot ou du joueur.
-
-Documents de la base
-¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-	players.player : {
-		phoneId : string,		// Identifiant du mobile du joueur
-		pseudo : string,		// Pseudo unique du joueur
-		score : integer,		// Nombre de points du joueur pour les ligues et le match-making
-		title : string,			// Titre actuel. Correspond à une valeur de l'enum Titles.name()
-		blessings : string[],	// Tableau des bénédictions. Correspond à des valeurs de l'enum Blessings.name()
-	}
-	games.game : {
-		startTime : timestamp,	// Date / heure de création (utiliser un type Date ?)
-		type : string,			// Type de partie. Correspond à une valeur de l'enum GameTypes.name()
-		curRound : integer,
-		curTurn : integer,
-		cur_player : integer,	// Joueur dont c'est le tour. Correspond à un indice du tableau players
-		first_player : integer,	// Joueur ayant débuté ce round
-		gameOver : boolean,		// Indique si la partie est terminée		
-		players : string[],		// Liste des pseudos des joueurs participant à la partie, dans l'ordre de jeu
-		arena : {				// JSON de l'arène au moment où la partie a été sauvegardée
-			
-		},
-		wordsPlayed : [			// Liste des mots déjà joués au cours de cette partie
-			{
-				time : timestamp,
-				player : string,
-				word : string
-			}
-		],
-		lastPlay : [			// Liste ordonnée des cellules sélectionnées lors du dernier mot
-			{
-				x : integer,
-				y : integer
-			}
-		],
-		chats : [				// Messages échangés entre les joueurs
-			{
-				time : timestamp,
-				player : string,
-				message : string
-			}
-		]
-	}
-	word : {
-		word : string,			// Le mot, en majuscules
-		status : string,		// Statut du mot (valide, en attente de validation, supprimé). Correspond à une valeur de l'enum WordStatus.name() (V, P, R => valid, pending, removed)
-	}
+[ ] DEV : Tester et évaluer :
+	- http://mongolink.org/
+	- http://jongo.org/
+	- https://github.com/dadastream/lib-mongomapper
+	- D'autres sur http://docs.mongodb.org/ecosystem/drivers/java/
 	
 [ ] ADD : DB - Créer le schéma
 	- titles : Titre gagné par le joueur (thrace, provocator...)

@@ -1,4 +1,4 @@
-package com.slamdunk.wordarena.server.data.user.dao;
+package com.slamdunk.wordarena.server.mybatis.data.user.dao;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.slamdunk.wordarena.server.data.user.vo.UserVO;
+import com.slamdunk.wordarena.server.mybatis.data.user.vo.UserVO;
 
 public interface UserDAO {
 

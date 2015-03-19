@@ -1,3 +1,9 @@
 Manifest-Version: 1.0
-Class-Path: mybatis-3.2.8.jar mysql-connector-java-5.1.34.jar
+Class-Path: asm-3.1.jar cglib-2.2.jar commons-lang-2.4.jar guava-18.0.
+ jar jackson-core-asl-1.9.8.jar jackson-mapper-asl-1.9.8.jar joda-mone
+ y-0.7.jar joda-time-2.7.jar logback-classic-1.0.9.jar logback-core-1.
+ 0.9.jar mongo-java-driver-2.13.0.jar mongolink-1.1.6.jar mybatis-3.2.
+ 8.jar org.restlet-2.1.1.jar org.restlet.ext.jackson-2.1.1.jar org.res
+ tlet.ext.json-2.1.1.jar org.restlet.ext.servlet-2.1.1.jar org.restlet
+ .lib.org.json-2.0.jar slf4j-api-1.7.2.jar
 

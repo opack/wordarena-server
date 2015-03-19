@@ -1,4 +1,4 @@
-package com.slamdunk.wordarena.server.data.blessing;
+package com.slamdunk.wordarena.server.mybatis.data.blessing;
 
 import java.io.Serializable;
 

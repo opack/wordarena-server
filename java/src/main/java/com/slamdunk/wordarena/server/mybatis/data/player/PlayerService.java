@@ -1,12 +1,12 @@
-package com.slamdunk.wordarena.server.data.player;
+package com.slamdunk.wordarena.server.mybatis.data.player;
 
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.slamdunk.wordarena.server.data.ConnectionFactory;
-import com.slamdunk.wordarena.server.data.player.PlayerDAO;
-import com.slamdunk.wordarena.server.data.player.PlayerVO;
+import com.slamdunk.wordarena.server.mybatis.data.ConnectionFactory;
+import com.slamdunk.wordarena.server.mybatis.data.player.PlayerDAO;
+import com.slamdunk.wordarena.server.mybatis.data.player.PlayerVO;
 
 /**
  * Service en charge de manipuler les entités Player

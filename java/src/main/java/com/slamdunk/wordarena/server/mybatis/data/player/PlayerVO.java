@@ -1,8 +1,8 @@
-package com.slamdunk.wordarena.server.data.player;
+package com.slamdunk.wordarena.server.mybatis.data.player;
 
 import java.io.Serializable;
 
-import com.slamdunk.wordarena.server.data.title.TitleVO;
+import com.slamdunk.wordarena.server.mybatis.data.title.TitleVO;
 
 public class PlayerVO implements Serializable {
 	private static final long serialVersionUID = 1402370983670448581L;

@@ -1,4 +1,4 @@
-package com.slamdunk.wordarena.server.data.player;
+package com.slamdunk.wordarena.server.mybatis.data.player;
 
 import java.util.List;
 

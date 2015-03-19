@@ -1,4 +1,4 @@
-package com.slamdunk.wordarena.server.data.user.vo;
+package com.slamdunk.wordarena.server.mybatis.data.user.vo;
 
 import java.io.Serializable;
 
