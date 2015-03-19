@@ -1,0 +1,103 @@
+Collections de la base
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+	players* : Joueurs qui participe à des parties. Il y a une relation de 1-1 avec un utilisateur.
+	games : Parties
+	dictionary* : Les mots du dictionnaire
+* Pour les documents contenus dans les collections players et dictionary, tester si on peut mettre directement dans la collection une clé correspondant au mot ou au pseudo, et en valeur le document qui définit les propriétés du mot ou du joueur.
+
+Documents de la base
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+	players.player : {
+		phoneId : string,		// Identifiant du mobile du joueur
+		pseudo : string,		// Pseudo unique du joueur
+		score : integer,		// Nombre de points du joueur pour les ligues et le match-making
+		title : string,			// Titre actuel. Correspond à une valeur de l'enum Titles.name()
+		blessings : string[],	// Tableau des bénédictions. Correspond à des valeurs de l'enum Blessings.name()
+	}
+	games.game : {
+		startTime : timestamp,	// Date / heure de création (utiliser un type Date ?)
+		type : string,			// Type de partie. Correspond à une valeur de l'enum GameTypes.name()
+		curRound : integer,
+		curTurn : integer,
+		cur_player : integer,	// Joueur dont c'est le tour. Correspond à un indice du tableau players
+		first_player : integer,	// Joueur ayant débuté ce round
+		gameOver : boolean,		// Indique si la partie est terminée		
+		players : string[],		// Liste des pseudos des joueurs participant à la partie, dans l'ordre de jeu
+		arena : {				// JSON de l'arène au moment où la partie a été sauvegardée
+			
+		},
+		wordsPlayed : [			// Liste des mots déjà joués au cours de cette partie
+			{
+				time : timestamp,
+				player : string,
+				word : string
+			}
+		],
+		lastPlay : [			// Liste ordonnée des cellules sélectionnées lors du dernier mot
+			{
+				x : integer,
+				y : integer
+			}
+		],
+		chats : [				// Messages échangés entre les joueurs
+			{
+				time : timestamp,
+				player : string,
+				message : string
+			}
+		]
+	}
+	word : {
+		word : string,			// Le mot, en majuscules
+		status : string,		// Statut du mot (valide, en attente de validation, supprimé). Correspond à une valeur de l'enum WordStatus.name() (V, P, R => valid, pending, removed)
+	}
+	
+[ ] ADD : DB - Créer le schéma
+	- titles : Titre gagné par le joueur (thrace, provocator...)
+		- id
+		- title
+		- nb_required_stars : Nombre d'étoiles requises pour obtenir ce titre
+	- blessings : Bénédictions gagnées par le joueur
+		- id
+		- blessing
+	- player
+		- id
+		- pseudo
+		- title_id
+		- score : Nombre de points du joueur pour les ligues et le match-making
+	- player_blessings
+		- player_id
+		- blessing_id
+	- game : Une partie multi-joueurs
+		- id
+		- creation_time : Date / heure de création
+		- type_id : Type de partie (D, L, T => Duel, League, Tournament)
+		- cur_round
+		- cur_turn
+		- cur_player : Joueur dont c'est le tour
+		- first_player : Joueur ayant débuté ce round
+		- game_over : Indique si la partie est terminée		
+		- arena : JSON de l'arène au moment où la partie a été sauvegardée
+	- game_players : Les joueurs participant à une partie
+		- game_id
+		- player_id
+		- place : Ordre de jeu du joueur (premier à jouer, le second...)
+	- game_words_played : Les mots précédemment joués, dans l'ordre
+		- game_id
+		- time
+		- player_id
+		- word_id
+	- game_last_play : Dernières cellules sélectionnées, dans l'ordre. Si nécessaire, on peut déduire le joueur en fonction de l'owner des cellules
+		- game_id
+		- place : Ordre de sélection de la lettre
+		- cell_x : Abscisse de la cellule jouée
+		- cell_y : Ordonnée de la cellule jouée
+	- game_chats : Les messages échangés
+		- game_id
+		- time
+		- message
+	- words : Dictionnaire contenant les mots existants
+		- id
+		- word : Le mot (en majuscules)
+		- status : Indique si le mot est valide (et donc utilisable), en attente de validation par l'admin ou supprimé (reste dans la base jusqu'à ce qu'aucun jeu ne s'en serve) (V, P, R => valid, pending, removed)
+		- version : Indique la version dans laquelle a eut lieu la dernière modification de status. On peut ainsi facilement stocker la dernière version de la base et regarder, à chaque démarrage, si de nouveaux mots ont été validés
