@@ -1,4 +1,4 @@
-package com.slamdunk.wordarena;
+package com.slamdunk.wordarena.server.web;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

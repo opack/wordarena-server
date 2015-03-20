@@ -5,18 +5,19 @@ players : [						// Joueurs qui participe à des parties. Il y a une relation de
 		score : integer,		// Nombre de points du joueur pour les ligues et le match-making
 		title : string,			// Titre actuel. Correspond à une valeur de l'enum Titles.name()
 		blessings : string[],	// Tableau des bénédictions. Correspond à des valeurs de l'enum Blessings.name()
-		game_ids : int[]		// Identifiants des parties en cours
+		gameIds : int[]			// Identifiants des parties en cours
 	}
 ],
 games : [						// Parties
 	{
-		_id : int				// Identifiant unique de la partie
-		startTime : timestamp,	// Date / heure de création (utiliser un type Date ?)
+		_id : int,				// Identifiant unique de la partie
+		startTime : date,		// Date / heure de création (utiliser un type Date ?)
 		type : string,			// Type de partie. Correspond à une valeur de l'enum GameTypes.name()
+		objective : string,		// L'objectif de la partie, càd les règles appliquées à la partie. Correspond à une valeur de l'enum GameObjectives.name()
 		curRound : integer,
 		curTurn : integer,
-		cur_player : integer,	// Joueur dont c'est le tour. Correspond à un indice du tableau players
-		first_player : integer,	// Joueur ayant débuté ce round
+		curPlayer : integer,	// Joueur dont c'est le tour. Correspond à un indice du tableau players
+		firstPlayer : integer,	// Joueur ayant débuté ce round
 		gameOver : boolean,		// Indique si la partie est terminée		
 		players : string[],		// Liste des pseudos des joueurs participant à la partie, dans l'ordre de jeu
 		arena : {				// JSON de l'arène au moment où la partie a été sauvegardée
@@ -24,9 +25,9 @@ games : [						// Parties
 		},
 		wordsPlayed : [			// Liste des mots déjà joués au cours de cette partie
 			{
-				time : timestamp,
-				player_id : string,
-				word_id : string
+				time : date,
+				playerId : string,
+				wordId : string
 			}
 		],
 		lastPlay : [			// Liste ordonnée des cellules sélectionnées lors du dernier mot
@@ -37,8 +38,8 @@ games : [						// Parties
 		],
 		chats : [				// Messages échangés entre les joueurs
 			{
-				time : timestamp,
-				player_id : string,
+				time : date,
+				playerId : string,
 				message : string
 			}
 		]
