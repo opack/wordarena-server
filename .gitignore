@@ -1,1 +1,5 @@
 target
+/java/*.classpath
+/java/*.project
+/java/.gitignore
+/java/.settings
