@@ -11,15 +11,17 @@ players : [						// Joueurs qui participe à des parties. Il y a une relation de
 games : [						// Parties
 	{
 		_id : int,				// Identifiant unique de la partie
-		startTime : date,		// Date / heure de création (utiliser un type Date ?)
+		createTime : date,		// Date/heure de création de la partie
+		startTime : date,		// Date/heure de début du partie. Si null, alors la partie n'a pas encore débuté et des joueurs peuvent la rejoindre.
+		endTime : date,			// Date où la partie prend fin (dépend du temps de jeu choisi et de la date du dernier coup)
 		type : string,			// Type de partie. Correspond à une valeur de l'enum GameTypes.name()
 		objective : string,		// L'objectif de la partie, càd les règles appliquées à la partie. Correspond à une valeur de l'enum GameObjectives.name()
 		curRound : integer,
 		curTurn : integer,
 		curPlayer : integer,	// Joueur dont c'est le tour. Correspond à un indice du tableau players
-		firstPlayer : integer,	// Joueur ayant débuté ce round
-		gameOver : boolean,		// Indique si la partie est terminée		
+		firstPlayer : integer,	// Joueur ayant débuté ce round. Correspond à un indice du tableau players
 		players : string[],		// Liste des pseudos des joueurs participant à la partie, dans l'ordre de jeu
+		gameOver : boolean,		// Indique si la partie est terminée		
 		arena : {				// JSON de l'arène au moment où la partie a été sauvegardée
 			
 		},
@@ -30,12 +32,15 @@ games : [						// Parties
 				wordId : string
 			}
 		],
-		lastPlay : [			// Liste ordonnée des cellules sélectionnées lors du dernier mot
-			{
-				x : integer,
-				y : integer
-			}
-		],
+		lastStroke : {
+			playerId : string,	// Joueur qui a joué ce dernier coup
+			cells : [			// Liste ordonnée des cellules sélectionnées lors du dernier mot
+				{
+					x : integer,
+					y : integer
+				}
+			]
+		},
 		chats : [				// Messages échangés entre les joueurs
 			{
 				time : date,
@@ -45,9 +50,11 @@ games : [						// Parties
 		]
 	}
 ],
-dictionary : [					// Les mots du dictionnaire
+wordsFR : [					// Les mots du dictionnaire d'une langue. XX = Code ISO de la langue, sans pays, en majuscules. Ex : FR, EN, DE...
 	{
 		_id : string,			// Le mot, en majuscules
-		status : string,		// Statut du mot (valide, en attente de validation, supprimé). Correspond à une valeur de l'enum WordStatus.name() (V, P, R => valid, pending, removed)
+		valid : boolean,		// Indique si le mot est valide ou non. Ce booléen ne peut changer que sur intervention d'admin.
+		requestAdd : string[]	// Pseudos des joueurs qui demandent l'ajout de ce mot parmi les mots valides
+		requestRemove : string[]// Pseudos des joueurs qui demandent que ce mot soit invalidé
 	}
 ]

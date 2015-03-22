@@ -1,0 +1,26 @@
+AUTH. Connexion
+	CONNECT. Connecter un client (retourne un token à utiliser à chaque appel)
+	DISCONNECT. Déconnecter un client
+PLAYER. Gestion du joueur
+	PROFILE. Définit son profile
+MATCH. Gestion de la partie
+	SEARCH. Chercher une partie avec certaines caractéristiques
+	JOIN. Rejoindre une partie à partir d'un identifiant
+	LEAVE. Quitter une partie
+	CHAT. Envoyer un message aux autres joueurs
+	PUSH. Push une notification
+SCORE. Gestion des scores, exploits et badges
+	UPDATE. Mettre à jour le score du joueur
+	EARN_ACHIEVEMENT. Gagner un exploit
+	EARN_TITLE. Gagner un titre
+	EARN_BADGE. Gagner un badge	
+DICO. Gestion du dictionnaire
+	SUGGEST. Ajouter une suggestion de mot
+	ADD. Ajouter un mot (fonctionnalité admin)
+	REMOVE. Retirer un mot (fonctionnalité admin)
+	VALIDATE. Valider un mot joué au cours d'un match
+	VALIDATE_START. Valider un début de mot (savoir si des mots débutant par cette chaine existent)
+	FIND_PREFIX. Rechercher tous les mots commençant par une chaine
+
+Google Play Game Services
+	- Turn-based match : utiliser setVariant() pour jouer sur les différentes caractéristiques d'un match
