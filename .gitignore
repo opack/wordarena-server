@@ -3,3 +3,9 @@ target
 /java/*.project
 /java/.gitignore
 /java/.settings
+/j2se/.classpath
+/j2se/.project
+/j2se/.settings
+/webapp/.classpath
+/webapp/.project
+/webapp/.settings
