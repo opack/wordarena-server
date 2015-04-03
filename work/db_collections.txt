@@ -50,7 +50,7 @@ games : [						// Parties
 		]
 	}
 ],
-wordsFR : [					// Les mots du dictionnaire d'une langue. XX = Code ISO de la langue, sans pays, en majuscules. Ex : FR, EN, DE...
+lexisFR : [					// Les mots du dictionnaire d'une langue. XX = Code ISO de la langue, sans pays, en majuscules. Ex : FR, EN, DE...
 	{
 		_id : string,			// Le mot, en majuscules
 		valid : boolean,		// Indique si le mot est valide ou non. Ce booléen ne peut changer que sur intervention d'admin.

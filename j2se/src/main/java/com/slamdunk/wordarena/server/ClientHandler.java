@@ -14,11 +14,13 @@ import com.slamdunk.wordarena.server.commands.CommandProcessor;
  * reçue est traitée, la connexion est fermée.
  */
 public class ClientHandler extends Thread {
-	private Socket socket = null;
+	private Socket socket;
+	private MongoClient mongoClient;
 
 	public ClientHandler(Socket socket, MongoClient mongoClient) {
 		super("WordArenaClientHandler");
 		this.socket = socket;
+		this.mongoClient = mongoClient;
 	}
 
 	public void run() {
@@ -34,7 +36,7 @@ public class ClientHandler extends Thread {
 			
 			// Traitement de la requête
 			CommandProcessor commandProcessor = new CommandProcessor();
-			String output = commandProcessor.process(jsonCommand);
+			String output = commandProcessor.process(jsonCommand, mongoClient);
 				
 			// Renvoie la résponse au client
 			out.println(output);

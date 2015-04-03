@@ -1,4 +1,4 @@
-[ ] ADD : Shell : Utiliser des objets pour chaque commande plutôt que des méthodes
+[ ] ADD : Chargement d'un fichier lexique entier
 [ ] MOD : Déporter le calcul du score côté serveur pour éviter les applications frauduleuses et les décalages de version en cas de màj de la méthode de calcul de score. Le client soumet son mot, le serveur valide que c'est bien à lui de jouer, que les celle mot est valide et que les cellules peuvent être sélectionnées (murs, types de cellule...) et correspondent bien au mot soumis, puis il modifie les scores et l'état de la partie et notifie les joueurs du coup joué.
 	- Idem pour le calcul du joueur/tour/round actuels
 	- Idem pour la màj de la liste des mots joués

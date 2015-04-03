@@ -30,10 +30,6 @@ public class WordArenaServer {
 	 */
 	private MongoClient mongoClient;
 	
-	public WordArenaServer(ServerConfig config) {
-		this.config = config; 
-	}
-	
 	public void start() {
 		// Connexion à la base de données
 		connectDatabase();
@@ -75,10 +71,10 @@ public class WordArenaServer {
 	    	// On n'affiche l'erreur que si listening == true. Dans le cas contraire, l'erreur
 	    	// est levée suite à la brusque fermeture du socket.
 	    	if (listening) {
-	    		System.err.println("Error on server socket : " + e.getMessage());
+	    		System.out.println("ERROR : Error on server socket : " + e.getMessage());
 	    	}
 		} catch (IOException e) {
-            System.err.println("Could not listen on port " + config.serverAddress + ":" + config.serverPort);
+            System.out.println("ERROR : Could not listen on port " + config.serverAddress + ":" + config.serverPort);
             System.exit(-1);
         }
         
@@ -94,7 +90,7 @@ public class WordArenaServer {
 		try {
 			socket.close();
 		} catch (IOException e) {
-			System.err.println("Error occurred while closing socket : " + e.getMessage());
+			System.out.println("ERROR : Error occurred while closing socket : " + e.getMessage());
 			e.printStackTrace();
 		}
 
@@ -108,7 +104,15 @@ public class WordArenaServer {
 		return listening;
 	}
 
+	public void setConfig(ServerConfig config) {
+		this.config = config;
+	}
+
 	public ServerConfig getConfig() {
 		return config;
+	}
+
+	public MongoClient getDatabaseClient() {
+		return mongoClient;
 	}
 }
