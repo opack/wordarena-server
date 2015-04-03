@@ -28,6 +28,7 @@ public class HelpShellCommand extends AbstractShellCommand {
 		help.append("Execute commands on server\n");
 		help.append("--------------------------\n");
 		help.append(" - execute      : Executes the specified command on the server.\n");
+		help.append(" - reloadLexis  : Clears and reloads the default lexis file for the specified language.\n");
 		
 		// Affiche l'aide
 		System.out.println(help.toString());

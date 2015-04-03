@@ -1,4 +1,4 @@
-package com.slamdunk.wordarena.server.shell;
+package com.slamdunk.wordarena.server;
 
 public class ServerConfig {
 	public String serverAddress;

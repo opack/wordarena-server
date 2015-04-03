@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Properties;
 
+import com.slamdunk.wordarena.server.ServerConfig;
 import com.slamdunk.wordarena.server.WordArenaServer;
-import com.slamdunk.wordarena.server.shell.ServerConfig;
 
 public class InitShellCommand extends AbstractShellCommand {
 

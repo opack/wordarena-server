@@ -7,7 +7,6 @@ import java.net.Socket;
 import java.net.SocketException;
 
 import com.mongodb.MongoClient;
-import com.slamdunk.wordarena.server.shell.ServerConfig;
 
 public class WordArenaServer {
 	/**

@@ -18,11 +18,20 @@ import com.mongodb.client.MongoCollection;
  * XX est le code de la langue. Ex : "lexisFR"
  */
 public class LexisService extends MongoService {
+	private final String collectionName;
 	private MongoCollection<Document> collection;
 
 	public LexisService(MongoClient mongoClient, String langISOCode) {
 		super(mongoClient);
-		collection = getCollection(COLLECTION + langISOCode.toUpperCase());
+		collectionName = COLLECTION + langISOCode.toUpperCase();
+		collection = getCollection(collectionName);
+	}
+	
+	/**
+	 * Vide la collection
+	 */
+	public boolean clear() {
+		return clearCollection(collectionName);
 	}
 	
 	public void addWord(String word) {

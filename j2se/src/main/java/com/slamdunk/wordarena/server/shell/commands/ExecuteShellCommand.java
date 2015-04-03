@@ -14,12 +14,17 @@ public class ExecuteShellCommand extends AbstractShellCommand {
 			// Lecture de la commande à exécuter et des paramètres
 			System.out.print("   Command         : ");
 			String command = in.readLine();
+			if (command == null || command.isEmpty()) {
+				System.out.println("ERROR : Command cannot be empty.");
+				return false;
+			}
 			
 			System.out.print("   JSON params [{}]: ");
 			String jsonParameters = in.readLine();
 			if (jsonParameters == null
 			|| jsonParameters.isEmpty()) {
 				jsonParameters = "{}";
+				System.out.println("INFO : Using empty parameters JSON object.");
 			}
 			
 			// Construction de la chaine JSON

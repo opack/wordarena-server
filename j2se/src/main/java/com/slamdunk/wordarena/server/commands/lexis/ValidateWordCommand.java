@@ -52,7 +52,7 @@ public class ValidateWordCommand implements Command {
 		Document doc = mongo.findWord(word);
 		
 		// Détermine sa validité
-		valid = doc != null && doc.getBoolean(VALID, false);
+		valid = doc != null && doc.getBoolean(VALID, true);
 	}
 
 	@Override
