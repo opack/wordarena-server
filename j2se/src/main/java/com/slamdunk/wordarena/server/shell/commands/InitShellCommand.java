@@ -27,9 +27,10 @@ public class InitShellCommand extends AbstractShellCommand {
 			
 			config.logFile = properties.getProperty("logfile");
 			
-			// Crée le serveur
+			// Passe la config au serveur
 			server.setConfig(config);
 
+			System.out.println("INFO : Configuration loaded and passed to the server. Use 'start' command to run server.");
 			return true;
 		} catch (IOException e) {
 			System.out.println("ERROR : Error while reading server.properties : " + e.getMessage());

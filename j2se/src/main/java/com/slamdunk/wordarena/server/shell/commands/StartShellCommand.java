@@ -13,15 +13,20 @@ public class StartShellCommand extends AbstractShellCommand {
 			return false;
 		}
 		
-		// Démarre le serveur dans un thread à part pour que son attente active
-		// de clients ne bloque pas le thread du shell
+		// Lance l'attente des clients dans un thread pour ne pas bloquer le shell
 		new Thread() {
 			public void run() {
 				server.start();
 			};
 		}.start();
 		
-		System.out.println("INFO : Server start command issued. Check log for more details.");
+		// Si le serveur écoute, alors il est bien démarré
+		if (server.isListening()) {
+			System.out.println("INFO : Server started.");
+		} else {
+			System.out.println("ERROR : An error occurred while starting server. Please check log for more details.");
+		}
+		
 		return true;
 	}
 

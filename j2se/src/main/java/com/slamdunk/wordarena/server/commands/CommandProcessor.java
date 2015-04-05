@@ -12,6 +12,14 @@ import com.mongodb.MongoClient;
  * Gère les différentes commandes reçues en en transmettant le traitement à l'objet adéquat
  */
 public class CommandProcessor {
+	/**
+	 * Identifiant du client à utiliser dans la log
+	 */
+	private String logClientId;
+	
+	public void setLogClientId(String logClientId) {
+		this.logClientId = logClientId;
+	}
 
 	/**
 	 * Traite une commande au format JSON suivant :
@@ -37,11 +45,13 @@ public class CommandProcessor {
     	// Crée la commande adéquate
     	Command command = CommandFactory.create(commandName);
     	command.setParameters(parameters);
+    	System.out.println("INFO [" + logClientId + "] : Processing " + commandName + "...");
     	
     	// Exécute la commande
     	command.execute(mongoClient);
     	
     	// Retourne le résultat
+    	System.out.println("INFO [" + logClientId + "] : Result : " + command.getResult().toString());
         return command.getResult().toString();
     }
 }

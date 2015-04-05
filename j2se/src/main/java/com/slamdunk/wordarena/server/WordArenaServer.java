@@ -30,10 +30,7 @@ public class WordArenaServer {
 	private MongoClient mongoClient;
 	
 	public void start() {
-		// Connexion à la base de données
 		connectDatabase();
-		
-		// Démarrage du serveur
 		runServer();
 	}
 	
@@ -48,20 +45,20 @@ public class WordArenaServer {
 	 * Démarre l'écoute sur l'adresse et le port indiqués dans la config
 	 */
 	private void runServer() {
-        listening = true;        
+        listening = true;
         try (
     		// Création du server, qui devra être close() en cas de problème
     		ServerSocket serverSocket = new ServerSocket(config.serverPort, 0, Inet4Address.getByName(config.serverAddress));
         ) {
         	this.socket = serverSocket;
-        	System.out.println("Server started. Listening on " + config.serverAddress + ":" + config.serverPort);
+        	System.out.println("INFO : Server started. Listening on " + config.serverAddress + ":" + config.serverPort);
         	
             while (listening) {
-            	System.out.println("Waiting for a client...");
+            	System.out.println("INFO : Waiting for a client...");
             	
             	// Attente de connexion d'un client
             	Socket socket = serverSocket.accept();
-            	System.out.println("Client connected (" + socket.getRemoteSocketAddress() + "). Launching a new ClientHandler...");
+            	System.out.println("INFO : Client connected (" + socket.getRemoteSocketAddress() + "). Launching a new ClientHandler...");
             	
             	// Création d'un thread pour gérer la communication avec ce client
 	            new ClientHandler(socket, mongoClient).start();
@@ -74,17 +71,17 @@ public class WordArenaServer {
 	    	}
 		} catch (IOException e) {
             System.out.println("ERROR : Could not listen on port " + config.serverAddress + ":" + config.serverPort);
-            System.exit(-1);
         }
         
-        System.out.println("Server stopped listening for clients.");
+        listening = false;
+        System.out.println("INFO : Server stopped listening for clients.");
     }
 	
 	/**
 	 * Arrête le serveur et ferme la connexion à la base
 	 */
 	public void stop() {
-		System.out.println("Stopping server...");
+		System.out.println("INFO : Stopping server...");
 		listening = false;
 		try {
 			socket.close();
@@ -94,7 +91,7 @@ public class WordArenaServer {
 		}
 
 		if (mongoClient != null) {
-			System.out.println("Closing database connexion...");
+			System.out.println("INFO : Closing database connexion...");
 			mongoClient.close();
 		}
 	}

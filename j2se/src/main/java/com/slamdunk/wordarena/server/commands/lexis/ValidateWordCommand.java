@@ -37,7 +37,7 @@ public class ValidateWordCommand implements Command {
 	/**
 	 * Résultat indiquant si le mot est valide ou non
 	 */
-	private boolean valid;
+	private JsonObject result;
 	
 	@Override
 	public void setParameters(JsonObject parameters) {
@@ -52,14 +52,17 @@ public class ValidateWordCommand implements Command {
 		Document doc = mongo.findWord(word);
 		
 		// Détermine sa validité
-		valid = doc != null && doc.getBoolean(VALID, true);
+		boolean valid = doc != null && doc.getBoolean(VALID, true);
+		
+		// Prépare le résultat
+		JsonObjectBuilder builder = Json.createObjectBuilder();
+		builder.add(PARAM_RESULT, valid);
+		result = builder.build();
 	}
 
 	@Override
 	public JsonObject getResult() {
-		JsonObjectBuilder result = Json.createObjectBuilder();
-		result.add(PARAM_RESULT, valid);
-		return result.build();
+		return result;
 	}
 
 }

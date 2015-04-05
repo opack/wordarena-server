@@ -30,6 +30,8 @@ public class AddWordCommand implements Command {
 	 */
 	private String word;
 	
+	private JsonObject result;
+	
 	@Override
 	public void setParameters(JsonObject parameters) {
 		lang = parameters.getString(PARAM_LANG, DEFAULT_LANG);
@@ -41,13 +43,16 @@ public class AddWordCommand implements Command {
 		// Ajoute le mot en base
 		LexisService mongo = new LexisService(mongoClient, lang);
 		mongo.addWord(word);
+		
+		// Prépare le résultat
+		JsonObjectBuilder builder = Json.createObjectBuilder();
+		builder.add(PARAM_RESULT, true);
+		result = builder.build();
 	}
 
 	@Override
 	public JsonObject getResult() {
-		JsonObjectBuilder result = Json.createObjectBuilder();
-		result.add(PARAM_RESULT, true);
-		return result.build();
+		return result;
 	}
 
 }

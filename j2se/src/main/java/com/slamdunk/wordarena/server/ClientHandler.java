@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 import com.mongodb.MongoClient;
@@ -25,20 +26,27 @@ public class ClientHandler extends Thread {
 
 	public void run() {
 
+		String logClientId;
+		
 		try (
 			// Déclaration des ressources qui seront utilisées dans le try et devront
 			// être fermées à la fin (similaire à un finally)
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		) {
+			logClientId = ((InetSocketAddress)socket.getRemoteSocketAddress()).toString();
+			
 			// Récupération de la commande au format JSON
 			String jsonCommand = in.readLine();
+			System.out.println("INFO [" + logClientId + "] : Command received : " + jsonCommand);
 			
 			// Traitement de la requête
 			CommandProcessor commandProcessor = new CommandProcessor();
+			commandProcessor.setLogClientId(logClientId);
 			String output = commandProcessor.process(jsonCommand, mongoClient);
 				
 			// Renvoie la résponse au client
+			System.out.println("INFO [" + logClientId + "] : Response sent : " + output);
 			out.println(output);
 			
 			// Ferme la connexion
