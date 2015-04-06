@@ -28,7 +28,7 @@ public class ExecuteShellCommand extends AbstractShellCommand {
 			}
 			
 			// Construction de la chaine JSON
-			String jsonCommand = String.format("{\"command\":\"%s\",\"parameters\":%s}", command, jsonParameters);
+			String jsonCommand = String.format("{\"command\":\"%s\",\"parameters\":%s}", command.toUpperCase(), jsonParameters);
 			System.out.println("Executing " + jsonCommand);
 			
 			CommandProcessor commandProcessor = new CommandProcessor();

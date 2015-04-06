@@ -5,6 +5,7 @@ import org.bson.Document;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.slamdunk.wordarena.server.WordArenaServerException;
 
 /**
  * Simplifie l'accès à mongoDB
@@ -37,5 +38,10 @@ public class MongoService {
 		database.createCollection(collectionName);
 		
 		return true;
+	}
+	
+	protected static void throwGenericException(String message, Exception rootException) throws WordArenaServerException {
+		System.out.println("ERROR : " + message + " (root exception : " + rootException.getMessage() + ").");
+		throw new WordArenaServerException(rootException);
 	}
 }

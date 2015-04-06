@@ -2,28 +2,19 @@ package com.slamdunk.wordarena.server.commands.lexis;
 
 import static com.slamdunk.wordarena.server.commands.lexis.LexisFields.VALID;
 
-import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
 
 import org.bson.Document;
 
 import com.mongodb.MongoClient;
-import com.slamdunk.wordarena.server.commands.Command;
+import com.slamdunk.wordarena.server.commands.AbstractCommandExecutor;
+import com.slamdunk.wordarena.server.commands.Commands;
 import com.slamdunk.wordarena.server.database.LexisService;
 
 /**
  * Valide un mot en indiquant s'il fait ou non partie du lexique
  */
-public class ValidateWordCommand implements Command {
-	public static final String PARAM_LANG = "lang";
-	private static final String DEFAULT_LANG = "FR";
-	
-	public static final String PARAM_WORD = "word";
-	private static final String DEFAULT_WORD = "";
-	
-	public static final String PARAM_RESULT = "result";
-	
+public class ValidateWordExecutor extends AbstractCommandExecutor {
 	/**
 	 * Langue dans laquelle chercher le mot
 	 */
@@ -34,15 +25,15 @@ public class ValidateWordCommand implements Command {
 	 */
 	private String word;
 	
-	/**
-	 * Résultat indiquant si le mot est valide ou non
-	 */
-	private JsonObject result;
+	@Override
+	public Commands getCommand() {
+		return Commands.LEXIS_VALIDATE;
+	}
 	
 	@Override
 	public void setParameters(JsonObject parameters) {
-		lang = parameters.getString(PARAM_LANG, DEFAULT_LANG);
-		word = parameters.getString(PARAM_WORD, DEFAULT_WORD).toUpperCase();
+		lang = parameters.getString(LexisFields.PARAM_LANG, LexisFields.DEFAULT_LANG);
+		word = parameters.getString(LexisFields.PARAM_WORD, LexisFields.DEFAULT_WORD).toUpperCase();
 	}
 
 	@Override
@@ -55,14 +46,7 @@ public class ValidateWordCommand implements Command {
 		boolean valid = doc != null && doc.getBoolean(VALID, true);
 		
 		// Prépare le résultat
-		JsonObjectBuilder builder = Json.createObjectBuilder();
-		builder.add(PARAM_RESULT, valid);
-		result = builder.build();
-	}
-
-	@Override
-	public JsonObject getResult() {
-		return result;
+		buildResult(valid);
 	}
 
 }

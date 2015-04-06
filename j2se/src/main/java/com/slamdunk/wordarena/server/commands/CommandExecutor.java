@@ -7,7 +7,13 @@ import com.mongodb.MongoClient;
 /**
  * Représente une commande à exécuter sur le serveur
  */
-public interface Command {
+public interface CommandExecutor {
+	
+	/**
+	 * Retourne la commande associée à cet exécuteur
+	 * @return
+	 */
+	Commands getCommand();
 	
 	/**
 	 * Définit les paramètres à utiliser

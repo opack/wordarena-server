@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.slamdunk.wordarena.server.WordArenaServer;
+import com.slamdunk.wordarena.server.WordArenaServerException;
 import com.slamdunk.wordarena.server.database.LexisService;
 
 /**
@@ -44,11 +45,15 @@ public class ReloadLexisShellCommand extends AbstractShellCommand {
 			}
 			
 			// Ajout des mots
-			lexis.addWords(words);
-			
-			System.out.println("INFO : " + words.size() + " words have been added.");
-			
-			return true;
+			try {
+				lexis.addWords(words);
+				
+				System.out.println("INFO : " + words.size() + " words have been added.");
+				
+				return true;
+			} catch (WordArenaServerException e) {
+				System.out.println("ERROR : Error while inserting words (" + e.getMessage() + ").");
+			}
 		} catch (IOException e) {
 			System.out.println("ERROR : Error while reading input : " + e.getMessage() + ". Command will not be executed.");
 		}

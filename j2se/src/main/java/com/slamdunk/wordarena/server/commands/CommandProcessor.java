@@ -4,6 +4,7 @@ import java.io.StringReader;
 
 import javax.json.Json;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
 
 import com.mongodb.MongoClient;
@@ -12,6 +13,9 @@ import com.mongodb.MongoClient;
  * Gère les différentes commandes reçues en en transmettant le traitement à l'objet adéquat
  */
 public class CommandProcessor {
+	public static final String PARAM_RESULT = "result";
+	public static final String PARAM_DETAILS = "details";
+	
 	/**
 	 * Identifiant du client à utiliser dans la log
 	 */
@@ -43,7 +47,13 @@ public class CommandProcessor {
     	json.close();
     	
     	// Crée la commande adéquate
-    	Command command = CommandFactory.create(commandName);
+    	CommandExecutor command = CommandFactory.create(commandName);
+    	if (command == null) {
+    		JsonObjectBuilder builder = Json.createObjectBuilder();
+    		builder.add(PARAM_RESULT, false);
+    		builder.add(PARAM_DETAILS, "Failed to create command " + commandName);
+    		return builder.build().toString();
+    	}
     	command.setParameters(parameters);
     	System.out.println("INFO [" + logClientId + "] : Processing " + commandName + "...");
     	
