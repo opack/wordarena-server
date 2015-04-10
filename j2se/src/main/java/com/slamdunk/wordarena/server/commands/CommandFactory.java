@@ -3,11 +3,18 @@ package com.slamdunk.wordarena.server.commands;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.slamdunk.wordarena.server.commands.lexis.AddWordExecutor;
+import com.slamdunk.wordarena.server.commands.lexis.RemoveWordExecutor;
+import com.slamdunk.wordarena.server.commands.lexis.ValidateWordExecutor;
+
 public class CommandFactory {
 	private static Map<String, Class<? extends CommandExecutor>> commands;
 	
 	static {
 		commands = new HashMap<String, Class<? extends CommandExecutor>>();
+		CommandFactory.register(Commands.LEXIS_ADD.name(), AddWordExecutor.class);
+		CommandFactory.register(Commands.LEXIS_REMOVE.name(), RemoveWordExecutor.class);
+		CommandFactory.register(Commands.LEXIS_VALIDATE.name(), ValidateWordExecutor.class);
 	}
 	
 	public static void register(String commandName, Class<? extends CommandExecutor> commandClass) {

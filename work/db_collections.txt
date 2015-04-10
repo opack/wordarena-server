@@ -10,29 +10,34 @@ players : [						// Joueurs qui participe à des parties. Il y a une relation de
 ],
 games : [						// Parties
 	{
-		_id : int,				// Identifiant unique de la partie
-		createTime : date,		// Date/heure de création de la partie
-		startTime : date,		// Date/heure de début du partie. Si null, alors la partie n'a pas encore débuté et des joueurs peuvent la rejoindre.
-		endTime : date,			// Date où la partie prend fin (dépend du temps de jeu choisi et de la date du dernier coup)
-		type : string,			// Type de partie. Correspond à une valeur de l'enum GameTypes.name()
-		objective : string,		// L'objectif de la partie, càd les règles appliquées à la partie. Correspond à une valeur de l'enum GameObjectives.name()
-		curRound : integer,
-		curTurn : integer,
-		curPlayer : integer,	// Joueur dont c'est le tour. Correspond à un indice du tableau players
-		firstPlayer : integer,	// Joueur ayant débuté ce round. Correspond à un indice du tableau players
+		header : {				// Entête de la partie, contenant des infos générales
+			_id : int,			// Identifiant unique de la partie
+			type : string,		// Type de partie. Correspond à une valeur de l'enum GameTypes.name()
+			objective : string,	// L'objectif de la partie, càd les règles appliquées à la partie. Correspond à une valeur de l'enum GameObjectives.name()
+			createTime : date,	// Date/heure de création de la partie
+			startTime : date,	// Date/heure de début du partie. Si null, alors la partie n'a pas encore débuté et des joueurs peuvent la rejoindre.
+			endTime : date,		// Date où la partie prend fin (dépend du temps de jeu choisi et de la date du dernier coup)
+			lastUpdateTime : date,	// Date/heure de la dernière mise à jour de la partie
+		},
+		cinematic : {
+			curRound : integer,
+			curTurn : integer,
+			curPlayer : integer,	// Joueur dont c'est le tour. Correspond à un indice du tableau players
+			firstPlayer : integer,	// Joueur ayant débuté ce round. Correspond à un indice du tableau players
+			gameOver : boolean,		// Indique si la partie est terminée
+		},
 		players : string[],		// Liste des pseudos des joueurs participant à la partie, dans l'ordre de jeu
-		gameOver : boolean,		// Indique si la partie est terminée		
 		arena : {				// JSON de l'arène au moment où la partie a été sauvegardée
 			
 		},
 		wordsPlayed : [			// Liste des mots déjà joués au cours de cette partie
 			{
 				time : date,
-				playerId : string,
+				player : int,	// Joueur ayant joué ce mot. Correspond à un indice du tableau players
 				wordId : string
 			}
 		],
-		lastStroke : {
+		lastMove : {
 			playerId : string,	// Joueur qui a joué ce dernier coup
 			cells : [			// Liste ordonnée des cellules sélectionnées lors du dernier mot
 				{

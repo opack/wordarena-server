@@ -4,6 +4,7 @@ public class ServerConfig {
 	public String serverAddress;
 	public int serverPort;
 	
+	public String mongoDbExec;
 	public String mongoDbAddress;
 	public int mongoDbPort;
 	

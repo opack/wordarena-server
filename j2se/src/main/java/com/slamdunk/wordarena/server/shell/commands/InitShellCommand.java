@@ -22,6 +22,7 @@ public class InitShellCommand extends AbstractShellCommand {
 			config.serverAddress = properties.getProperty("server.address");
 			config.serverPort = Integer.parseInt(properties.getProperty("server.port"));
 			
+			config.mongoDbExec = properties.getProperty("mongodb.exec");
 			config.mongoDbAddress = properties.getProperty("mongodb.address");
 			config.mongoDbPort = Integer.parseInt(properties.getProperty("mongodb.port"));
 			
