@@ -152,7 +152,13 @@ public class WordArenaServer {
 		
 		if (dbProcess.isAlive()) {
 			System.out.println("INFO : Shutting database server down...");
-			dbProcess.destroy();
+			// TODO Arrêt propre du démon
+			
+			
+			// Destruction du processus si nécessaire
+			if (dbProcess.isAlive()) {
+				dbProcess.destroy();
+			}
 		}
 	}
 

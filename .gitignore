@@ -9,3 +9,5 @@ target
 /webapp/.classpath
 /webapp/.project
 /webapp/.settings
+/.metadata
+/RemoteSystemsTempFiles
