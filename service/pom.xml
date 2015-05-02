@@ -3,11 +3,18 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+	<parent>
+		<groupId>com.slamdunk.wordarena</groupId>
+		<artifactId>server</artifactId>
+		<version>1.1-SNAPSHOT</version>
+	</parent>
+	
     <groupId>com.slamdunk.wordarena</groupId>
-    <artifactId>wordarena-server</artifactId>
+    <artifactId>service</artifactId>
+	
     <packaging>jar</packaging>
-    <version>1.0</version>
-    <name>Serveur pour WordArena</name>
+
+    <name>Service du serveur</name>
 
     <build>
         <plugins>
@@ -51,7 +58,7 @@
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<version>2.9</version>
 				<configuration>
-					<projectNameTemplate>WordArena-server</projectNameTemplate>
+					<projectNameTemplate>WordArena-service</projectNameTemplate>
 				</configuration>
 			</plugin>
 			
@@ -64,7 +71,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>com.slamdunk.wordarena.server.shell.ServerShell</mainClass>
+							<mainClass>com.slamdunk.wordarena.server.WordArenaServer</mainClass>
 						</manifest>
 					</archive>
 					<appendAssemblyId>false</appendAssemblyId>

@@ -11,3 +11,9 @@ target
 /webapp/.settings
 /.metadata
 /RemoteSystemsTempFiles
+/service/.classpath
+/service/.project
+/service/.settings
+/shell/.classpath
+/shell/.project
+/shell/.settings
