@@ -6,7 +6,7 @@ import javax.json.JsonObject;
 
 import org.bson.Document;
 
-import com.mongodb.MongoClient;
+import com.slamdunk.wordarena.server.Server;
 import com.slamdunk.wordarena.server.commands.AbstractCommandExecutor;
 import com.slamdunk.wordarena.server.commands.Commands;
 import com.slamdunk.wordarena.server.database.LexisService;
@@ -37,9 +37,9 @@ public class ValidateWordExecutor extends AbstractCommandExecutor {
 	}
 
 	@Override
-	public void execute(MongoClient mongoClient) {
+	public void execute(Server server) {
 		// Recherche le mot en base
-		LexisService mongo = new LexisService(mongoClient, lang);
+		LexisService mongo = new LexisService(server.getDatabaseClient(), lang);
 		Document doc = mongo.findWord(word);
 		
 		// Détermine sa validité

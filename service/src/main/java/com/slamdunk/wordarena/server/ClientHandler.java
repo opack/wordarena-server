@@ -7,7 +7,8 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-import com.mongodb.MongoClient;
+import javax.json.JsonObject;
+
 import com.slamdunk.wordarena.server.commands.CommandProcessor;
 
 /**
@@ -16,17 +17,18 @@ import com.slamdunk.wordarena.server.commands.CommandProcessor;
  */
 public class ClientHandler extends Thread {
 	private Socket socket;
-	private MongoClient mongoClient;
+	private Server server;
 
-	public ClientHandler(Socket socket, MongoClient mongoClient) {
+	public ClientHandler(Socket socket, Server server) {
 		super("WordArenaClientHandler");
 		this.socket = socket;
-		this.mongoClient = mongoClient;
+		this.server = server;
 	}
 
 	public void run() {
 
-		String logClientId;
+		String logClientId = "";
+		String output;
 		
 		try (
 			// Déclaration des ressources qui seront utilisées dans le try et devront
@@ -34,16 +36,21 @@ public class ClientHandler extends Thread {
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		) {
-			logClientId = ((InetSocketAddress)socket.getRemoteSocketAddress()).toString();
+			final InetSocketAddress clientAddress = ((InetSocketAddress)socket.getRemoteSocketAddress());
+			logClientId = clientAddress.toString();
 			
-			// Récupération de la commande au format JSON
-			String jsonCommand = in.readLine();
-			System.out.println("INFO [" + logClientId + "] : Command received : " + jsonCommand);
-			
-			// Traitement de la requête
-			CommandProcessor commandProcessor = new CommandProcessor();
-			commandProcessor.setLogClientId(logClientId);
-			String output = commandProcessor.process(jsonCommand, mongoClient);
+			// Teste si le client est autorisé à se connecter,
+			// et gère sa requête le cas échéant
+        	if (server.isAllowExternalClients()
+        	|| clientAddress.getAddress().isLoopbackAddress()) {
+        		
+        		output = acceptClient(logClientId, in);
+        		
+        	} else {
+        		
+        		output = refuseClient(logClientId);
+        		
+        	}
 				
 			// Renvoie la résponse au client
 			System.out.println("INFO [" + logClientId + "] : Response sent : " + output);
@@ -52,7 +59,31 @@ public class ClientHandler extends Thread {
 			// Ferme la connexion
 			socket.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("ERROR [" + logClientId + "] : Error while communicating through client socket.");
 		}
+	}
+	
+	private String acceptClient(String logClientId, BufferedReader in) throws IOException {
+		// Récupération de la commande au format JSON
+		String jsonCommand = in.readLine();
+		System.out.println("INFO [" + logClientId + "] : Command received : " + jsonCommand);
+		
+		// Traitement de la requête
+		CommandProcessor commandProcessor = new CommandProcessor();
+		commandProcessor.setLogClientId(logClientId);
+		String output = commandProcessor.process(jsonCommand, server);
+		
+		// Retour du résultat
+		return output;
+	}
+	
+	private String refuseClient(String logClientId) {
+		System.out.println("INFO [" + logClientId + "] : Client refused because allowExternalClients=false.");
+		
+		// Prépare le message expliquant le refus de connexion
+		JsonObject result = JsonResultBuilder.build(false, "External clients refused for the moment.");
+		
+		// Retour du résultat
+		return result.toString();
 	}
 }

@@ -9,16 +9,18 @@ import java.net.UnknownHostException;
 
 import com.mongodb.MongoClient;
 
-public class WordArenaServer {
+public class Server {
 	/**
 	 * Indique si le serveur tourne et attend des connexions
 	 */
 	private boolean listening;
 	
 	/**
-	 * Process de BD
+	 * Indique si le serveur autorise des clients externes (non-localhost)
+	 * à se connecter. Si false, seul un client sur la même machine
+	 * (typiquement le shell) peut se connecter.
 	 */
-	private Process dbProcess;
+	private boolean allowExternalClients;
 	
 	/**
 	 * La socket sur laquelle se connectent les clients
@@ -35,8 +37,17 @@ public class WordArenaServer {
 	 */
 	private MongoClient mongoClient;
 	
+	public boolean isAllowExternalClients() {
+		return allowExternalClients;
+	}
+
+	public void setAllowExternalClients(boolean allowExternalClients) {
+		this.allowExternalClients = allowExternalClients;
+	}
+
 	public boolean start() {
 		listening = false;
+		allowExternalClients = true;
 		
 		if (connectDatabase()) {
 			runServer();
@@ -49,51 +60,42 @@ public class WordArenaServer {
 	 * Ouvre une connexion à la base de données
 	 */
 	private boolean connectDatabase() {
-		try {
-			// Démarre le serveur de BD
-			dbProcess = Runtime.getRuntime().exec(config.mongoDbExec);
-			System.out.println("INFO : Database started using command '" + config.mongoDbExec + "'");
-			
-			// Se connecte à la base
-			boolean dbServerAvailable = false;
-			for (int curTry = 0; curTry < 10; curTry++) {
-				// Vérifie si le serveur est démarré en tentant une connexion sur l'@ et le port
-				try (
-					Socket dbSocket = new Socket(config.mongoDbAddress, config.mongoDbPort)
-				){
-					if (dbSocket.isConnected()) {
-						dbServerAvailable = true;
-						break;
-					}
-				} catch (UnknownHostException e) {
-					System.out.println("ERROR : Database not reachable because the configured host (" + config.mongoDbAddress + ":" + config.mongoDbPort + ") is unknown.");
-				} catch (IOException e) {
-					System.out.println("ERROR : Error while reaching to database server. Trying again in 1 second...");
-				} catch (SecurityException e) {
-					System.out.println("ERROR : Error while trying to connect to database server for security reasons.");
-				} catch (IllegalArgumentException e) {
-					System.out.println("ERROR : Specified database server port (" + config.mongoDbPort + ") is incorrect.");
+		// Se connecte à la base
+		boolean dbServerAvailable = false;
+		for (int curTry = 0; curTry < 10; curTry++) {
+			// Vérifie si le serveur est démarré en tentant une connexion sur l'@ et le port
+			try (
+				Socket dbSocket = new Socket(config.mongoDbAddress, config.mongoDbPort)
+			){
+				if (dbSocket.isConnected()) {
+					dbServerAvailable = true;
+					break;
 				}
-				
-				// Patiente 1s avant de réessayer
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// Si l'attente est interrompue, ce n'est pas grave : on fera juste la prochaine tentative plus tôt.
-				}
-			}
-			if (dbServerAvailable) {
-				mongoClient = new MongoClient(config.mongoDbAddress, config.mongoDbPort);
-				System.out.println("INFO : Database server started and connected.");
-			} else {
-				System.out.println("ERROR : Database unreachable. Server will not start.");
+			} catch (UnknownHostException e) {
+				System.out.println("ERROR : Database not reachable because the configured host (" + config.mongoDbAddress + ":" + config.mongoDbPort + ") is unknown.");
+			} catch (IOException e) {
+				System.out.println("ERROR : Error while reaching to database server. Trying again in 1 second...");
+			} catch (SecurityException e) {
+				System.out.println("ERROR : Error while trying to connect to database server for security reasons.");
+			} catch (IllegalArgumentException e) {
+				System.out.println("ERROR : Specified database server port (" + config.mongoDbPort + ") is incorrect.");
 			}
 			
-			return dbServerAvailable;
-		} catch (IOException e) {
-			System.out.println("ERROR : Error while executing database server launch command.");
+			// Patiente 1s avant de réessayer
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// Si l'attente est interrompue, ce n'est pas grave : on fera juste la prochaine tentative plus tôt.
+			}
 		}
-		return false;
+		if (dbServerAvailable) {
+			mongoClient = new MongoClient(config.mongoDbAddress, config.mongoDbPort);
+			System.out.println("INFO : Database server started and connected.");
+		} else {
+			System.out.println("ERROR : Database unreachable. Server will not start.");
+		}
+		
+		return dbServerAvailable;
 	}
 
 	/**
@@ -116,7 +118,7 @@ public class WordArenaServer {
             	System.out.println("INFO : Client connected (" + socket.getRemoteSocketAddress() + "). Launching a new ClientHandler...");
             	
             	// Création d'un thread pour gérer la communication avec ce client
-	            new ClientHandler(socket, mongoClient).start();
+	            new ClientHandler(socket, this).start();
 	        }
 	    } catch (SocketException e) {
 	    	// On n'affiche l'erreur que si listening == true. Dans le cas contraire, l'erreur
@@ -148,17 +150,6 @@ public class WordArenaServer {
 		if (mongoClient != null) {
 			System.out.println("INFO : Closing database connexion...");
 			mongoClient.close();
-		}
-		
-		if (dbProcess.isAlive()) {
-			System.out.println("INFO : Shutting database server down...");
-			// TODO Arrêt propre du démon
-			
-			
-			// Destruction du processus si nécessaire
-			if (dbProcess.isAlive()) {
-				dbProcess.destroy();
-			}
 		}
 	}
 

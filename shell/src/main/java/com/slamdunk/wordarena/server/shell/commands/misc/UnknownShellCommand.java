@@ -1,8 +1,8 @@
-package com.slamdunk.wordarena.server.shell.commands;
+package com.slamdunk.wordarena.server.shell.commands.misc;
 
 import java.io.BufferedReader;
 
-import com.slamdunk.wordarena.server.WordArenaServer;
+import com.slamdunk.wordarena.server.shell.commands.AbstractShellCommand;
 
 public class UnknownShellCommand extends AbstractShellCommand {
 	private String command;
@@ -12,7 +12,7 @@ public class UnknownShellCommand extends AbstractShellCommand {
 	}
 
 	@Override
-	public boolean execute(WordArenaServer server, BufferedReader in) {
+	public boolean execute(BufferedReader in) {
 		System.out.println("ERROR : The command '" + command + "' is unknown. Use 'help' for a list of available commands and mind the case of the commands.");
 		
 		return true;

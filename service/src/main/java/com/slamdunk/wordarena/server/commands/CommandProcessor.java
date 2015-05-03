@@ -7,7 +7,7 @@ import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonReader;
 
-import com.mongodb.MongoClient;
+import com.slamdunk.wordarena.server.Server;
 
 /**
  * Gère les différentes commandes reçues en en transmettant le traitement à l'objet adéquat
@@ -35,7 +35,7 @@ public class CommandProcessor {
 	 * @param mongoClient 
 	 * @return
 	 */
-    public String process(String jsonCommand, MongoClient mongoClient) {
+    public String process(String jsonCommand, Server server) {
     	// Parse le JSON reçu pour extraire les infos de travail
     	StringReader reader = new StringReader(jsonCommand);
     	JsonReader json = Json.createReader(reader);
@@ -58,7 +58,7 @@ public class CommandProcessor {
     	System.out.println("INFO [" + logClientId + "] : Processing " + commandName + "...");
     	
     	// Exécute la commande
-    	command.execute(mongoClient);
+    	command.execute(server);
     	
     	// Retourne le résultat
     	System.out.println("INFO [" + logClientId + "] : Result : " + command.getResult().toString());

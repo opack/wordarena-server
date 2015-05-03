@@ -1,7 +1,9 @@
-[ ] MOD : DÈporter le calcul du score cÙtÈ serveur pour Èviter les applications frauduleuses et les dÈcalages de version en cas de m‡j de la mÈthode de calcul de score. Le client soumet son mot, le serveur valide que c'est bien ‡ lui de jouer, que les celle mot est valide et que les cellules peuvent Ítre sÈlectionnÈes (murs, types de cellule...) et correspondent bien au mot soumis, puis il modifie les scores et l'Ètat de la partie et notifie les joueurs du coup jouÈ.
+[ ] MOD : Service/Shell - Pr√©voir un syst√®me qui charge dynamiquement les diff√©rentes commandes pr√©sentes (comme pour des plugins) sans avoir besoin de les d√©clarer dans la factory explicitement.
+		Cela permet, d√®s le d√©marrage du service ou du shell, d'avoir √† disposition toutes les commandes sans risquer l'oubli de d√©claration du lien.
+[ ] MOD : D√©porter le calcul du score c√¥t√© serveur pour √©viter les applications frauduleuses et les d√©calages de version en cas de m√†j de la m√©thode de calcul de score. Le client soumet son mot, le serveur valide que c'est bien √† lui de jouer, que les celle mot est valide et que les cellules peuvent √™tre s√©lectionn√©es (murs, types de cellule...) et correspondent bien au mot soumis, puis il modifie les scores et l'√©tat de la partie et notifie les joueurs du coup jou√©.
 	- Idem pour le calcul du joueur/tour/round actuels
-	- Idem pour la m‡j de la liste des mots jouÈs
-[ ] DEV : Tester et Èvaluer :
+	- Idem pour la m√†j de la liste des mots jou√©s
+[ ] DEV : Tester et √©valuer :
 	- http://mongolink.org/
 	- http://jongo.org/
 	- https://github.com/dadastream/lib-mongomapper

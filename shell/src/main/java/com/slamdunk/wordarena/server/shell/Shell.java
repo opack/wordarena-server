@@ -4,23 +4,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.slamdunk.wordarena.server.WordArenaServer;
 import com.slamdunk.wordarena.server.shell.commands.ShellCommand;
-import com.slamdunk.wordarena.server.shell.commands.ShellCommandFactory;
+import com.slamdunk.wordarena.server.shell.commands.CommandFactory;
 
 /**
  * Classe chargée de démarrer et d'arrêter le serveur
  */
-public class ServerShell {
-	private WordArenaServer server;
-	
+public class Shell {
 	public static void main(String[] args) throws IOException {
-		ServerShell shell = new ServerShell();
+		Shell shell = new Shell();
 		shell.run();
-	}
-	
-	public ServerShell() {
-		server = new WordArenaServer();
 	}
 	
 	/**
@@ -30,17 +23,18 @@ public class ServerShell {
 	public void run() throws IOException {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String command;
-		ShellCommandFactory factory = new ShellCommandFactory();
+		CommandFactory factory = new CommandFactory();
 		
 		// Affiche un message de bienvenue
 		printHello();
 		
+		// Attend les commandes
 		while ((command = in.readLine()) != null) {
 			// Crée la commande
 			ShellCommand shellCommand = factory.create(command);
 			
 			// Exécute la cmomande
-			shellCommand.execute(server, in);
+			shellCommand.execute(in);
 			
 			// Prompt pour la prochaine commande
 			printPrompt();

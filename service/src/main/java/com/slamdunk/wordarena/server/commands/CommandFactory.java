@@ -4,17 +4,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.slamdunk.wordarena.server.commands.lexis.AddWordExecutor;
+import com.slamdunk.wordarena.server.commands.lexis.LoadLexisExecutor;
 import com.slamdunk.wordarena.server.commands.lexis.RemoveWordExecutor;
 import com.slamdunk.wordarena.server.commands.lexis.ValidateWordExecutor;
+import com.slamdunk.wordarena.server.commands.server.AllowExternalClientsExecutor;
+import com.slamdunk.wordarena.server.commands.server.GetStatusExecutor;
+import com.slamdunk.wordarena.server.commands.server.RefuseExternalClientsExecutor;
+import com.slamdunk.wordarena.server.commands.server.ShutdownExecutor;
 
 public class CommandFactory {
 	private static Map<String, Class<? extends CommandExecutor>> commands;
 	
 	static {
 		commands = new HashMap<String, Class<? extends CommandExecutor>>();
+		CommandFactory.register(Commands.LEXIS_LOAD.name(), LoadLexisExecutor.class);
 		CommandFactory.register(Commands.LEXIS_ADD.name(), AddWordExecutor.class);
 		CommandFactory.register(Commands.LEXIS_REMOVE.name(), RemoveWordExecutor.class);
 		CommandFactory.register(Commands.LEXIS_VALIDATE.name(), ValidateWordExecutor.class);
+		
+		CommandFactory.register(Commands.SERVER_STATUS.name(), GetStatusExecutor.class);
+		CommandFactory.register(Commands.SERVER_START.name(), AllowExternalClientsExecutor.class);
+		CommandFactory.register(Commands.SERVER_STOP.name(), RefuseExternalClientsExecutor.class);
+		CommandFactory.register(Commands.SERVER_SHUTDOWN.name(), ShutdownExecutor.class);
 	}
 	
 	public static void register(String commandName, Class<? extends CommandExecutor> commandClass) {

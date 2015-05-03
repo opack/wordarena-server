@@ -1,15 +1,14 @@
-package com.slamdunk.wordarena.server.shell.commands;
+package com.slamdunk.wordarena.server.shell.commands.misc;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 
-import com.slamdunk.wordarena.server.WordArenaServer;
-import com.slamdunk.wordarena.server.commands.CommandProcessor;
+import com.slamdunk.wordarena.server.shell.commands.AbstractShellCommand;
 
-public class ExecuteShellCommand extends AbstractShellCommand {
+public class ExecuteCommand extends AbstractShellCommand {
 
 	@Override
-	public boolean execute(WordArenaServer server, BufferedReader in) {
+	public boolean execute(BufferedReader in) {
 		try {
 			// Lecture de la commande à exécuter et des paramètres
 			System.out.print("   Command         : ");
@@ -27,15 +26,9 @@ public class ExecuteShellCommand extends AbstractShellCommand {
 				System.out.println("INFO : Using empty parameters JSON object.");
 			}
 			
-			// Construction de la chaine JSON
-			String jsonCommand = String.format("{\"command\":\"%s\",\"parameters\":%s}", command.toUpperCase(), jsonParameters);
-			System.out.println("Executing " + jsonCommand);
+			// Envoie la commande au serveur
+			return sendCommand(command.toUpperCase(), jsonParameters) != null;
 			
-			CommandProcessor commandProcessor = new CommandProcessor();
-			String result = commandProcessor.process(jsonCommand, server.getDatabaseClient());
-			System.out.println(result);
-			
-			return true;
 		} catch (IOException e) {
 			System.out.println("ERROR : Error while reading input : " + e.getMessage() + ". Command will not be executed.");
 		}

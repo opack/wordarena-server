@@ -1,0 +1,8 @@
+Console EC2 : https://eu-west-1.console.aws.amazon.com/ec2
+
+Installation de mongoDB : http://docs.mongodb.org/ecosystem/platforms/amazon-ec2
+
+Connexion en FTP avec FileZilla : http://stackoverflow.com/questions/16744863/connect-to-amazon-ec2-file-directory-using-filezilla-and-sftp
+En cas de problème de permission : http://stackoverflow.com/questions/10337951/amazon-ec2-ftp-write-permission
+
+Installation JDK8:

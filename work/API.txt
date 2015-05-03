@@ -14,13 +14,19 @@ SCORE. Gestion des scores, exploits et badges
 	EARN_ACHIEVEMENT. Gagner un exploit
 	EARN_TITLE. Gagner un titre
 	EARN_BADGE. Gagner un badge	
-DICO. Gestion du dictionnaire
+LEXIS. Gestion des lexiques
 	SUGGEST. Ajouter une suggestion de mot
+	LOAD. Charger un lexique pour une langue (fonctionnalité admin)
 	ADD. Ajouter un mot (fonctionnalité admin)
 	REMOVE. Retirer un mot (fonctionnalité admin)
 	VALIDATE. Valider un mot joué au cours d'un match
 	VALIDATE_START. Valider un début de mot (savoir si des mots débutant par cette chaine existent)
 	FIND_PREFIX. Rechercher tous les mots commençant par une chaine
-
+SERVER. Gestion du serveur
+	START. Démarre l'écoute des clients externes (fonctionnalité admin)
+	STOP. Arrête d'écouter les clients autre que localhost (fonctionnalité admin)
+	SHUTDOWN. Eteint le serveur. Même le shell ne pourra plus se connecter (fonctionnalité admin)
+	STATUS. Donne des informations sur l'état du serveur
+	
 Google Play Game Services
 	- Turn-based match : utiliser setVariant() pour jouer sur les différentes caractéristiques d'un match

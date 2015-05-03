@@ -2,7 +2,7 @@ package com.slamdunk.wordarena.server.commands.lexis;
 
 import javax.json.JsonObject;
 
-import com.mongodb.MongoClient;
+import com.slamdunk.wordarena.server.Server;
 import com.slamdunk.wordarena.server.WordArenaServerException;
 import com.slamdunk.wordarena.server.commands.AbstractCommandExecutor;
 import com.slamdunk.wordarena.server.commands.Commands;
@@ -34,9 +34,9 @@ public class RemoveWordExecutor extends AbstractCommandExecutor {
 	}
 
 	@Override
-	public void execute(MongoClient mongoClient) {
+	public void execute(Server server) {
 		boolean done;
-		LexisService mongo = new LexisService(mongoClient, lang);
+		LexisService mongo = new LexisService(server.getDatabaseClient(), lang);
 		try {
 			// Supprime le mot en base.
 			done = mongo.removeWord(word) == 1;

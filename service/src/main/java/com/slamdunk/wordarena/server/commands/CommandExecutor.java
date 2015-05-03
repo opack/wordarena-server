@@ -2,7 +2,7 @@ package com.slamdunk.wordarena.server.commands;
 
 import javax.json.JsonObject;
 
-import com.mongodb.MongoClient;
+import com.slamdunk.wordarena.server.Server;
 
 /**
  * Représente une commande à exécuter sur le serveur
@@ -24,9 +24,9 @@ public interface CommandExecutor {
 	/**
 	 * Exécute la commande
 	 * @param parameters
-	 * @param mongoClient 
+	 * @param server 
 	 */
-	void execute(MongoClient mongoClient);
+	void execute(Server server);
 
 	/**
 	 * Retourne le résultat de la commande

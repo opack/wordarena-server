@@ -1,16 +1,13 @@
 package com.slamdunk.wordarena.server.commands;
 
-import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+
+import com.slamdunk.wordarena.server.JsonResultBuilder;
 
 /**
  * Cette classe se charge de la création du résultat
  */
 public abstract class AbstractCommandExecutor implements CommandExecutor {
-	public static final String PARAM_RESULT = "result";
-	public static final String PARAM_DETAILS = "details";
-	
 	private JsonObject result;
 	
 	@Override
@@ -19,15 +16,14 @@ public abstract class AbstractCommandExecutor implements CommandExecutor {
 	}
 
 	protected void buildResult(boolean result) {
-		buildResult(result, null);
+		this.result = JsonResultBuilder.build(result, (String)null);
+	}
+	
+	protected void buildResult(boolean result, JsonObject details) {
+		this.result = JsonResultBuilder.build(result, details);
 	}
 	
 	protected void buildResult(boolean result, String details) {
-		JsonObjectBuilder builder = Json.createObjectBuilder();
-		builder.add(PARAM_RESULT, result);
-		if (details != null) {
-			builder.add(PARAM_DETAILS, details);
-		}
-		this.result = builder.build();
+		this.result = JsonResultBuilder.build(result, details);
 	}
 }
