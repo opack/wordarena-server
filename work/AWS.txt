@@ -6,3 +6,16 @@ Connexion en FTP avec FileZilla : http://stackoverflow.com/questions/16744863/co
 En cas de problème de permission : http://stackoverflow.com/questions/10337951/amazon-ec2-ftp-write-permission
 
 Installation JDK8:
+
+Installation de wordarenad:
+/!\ ATTENTION ! Le fichier doit être au format linux, donc attention aux retours à la ligne (juste LF, pas CRLF !)
+	- S'assurer qu'un utilisateur existe pour lancer cet exécutable
+		useradd wordarena
+	- Rendre wordarenad exécutable
+		chmod +x /etc/init.d/wordarenad
+	- Le copier dans /etc/init.d/
+		cp wordarenad /etc/init.d/
+	- Tester le service
+		sudo service wordarenad start
+		sudo service wordarenad stop
+		sudo service wordarenad restart

@@ -1,3 +1,4 @@
+[ ] ADD : Service : La commande SERVER_STATUS doit retourner la version du serveur (idéalement tiré du MANIFEST.MF)
 [ ] MOD : Service/Shell - Prévoir un système qui charge dynamiquement les différentes commandes présentes (comme pour des plugins) sans avoir besoin de les déclarer dans la factory explicitement.
 		Cela permet, dès le démarrage du service ou du shell, d'avoir à disposition toutes les commandes sans risquer l'oubli de déclaration du lien.
 [ ] MOD : Déporter le calcul du score côté serveur pour éviter les applications frauduleuses et les décalages de version en cas de màj de la méthode de calcul de score. Le client soumet son mot, le serveur valide que c'est bien à lui de jouer, que les celle mot est valide et que les cellules peuvent être sélectionnées (murs, types de cellule...) et correspondent bien au mot soumis, puis il modifie les scores et l'état de la partie et notifie les joueurs du coup joué.

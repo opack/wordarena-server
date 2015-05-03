@@ -17,6 +17,7 @@
     <name>Service du serveur</name>
 
     <build>
+    	<finalName>wordarenad</finalName>
         <plugins>
 			<!-- Compilation en Java 1.7 (version installée sur AWS) -->
             <plugin>
