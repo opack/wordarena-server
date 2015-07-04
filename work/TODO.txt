@@ -1,11 +1,8 @@
+[ ] ADD : Service : Utiliser l'API Service Provider pour implémenter les commandes
+	Tuto : http://thecodersbreakfast.net/index.php?post/2008/12/26/Java-%3A-pr%C3%A9sentation-du-Service-Provider-API
 [ ] ADD : Service : La commande SERVER_STATUS doit retourner la version du serveur (idéalement tiré du MANIFEST.MF)
 [ ] MOD : Service/Shell - Prévoir un système qui charge dynamiquement les différentes commandes présentes (comme pour des plugins) sans avoir besoin de les déclarer dans la factory explicitement.
 		Cela permet, dès le démarrage du service ou du shell, d'avoir à disposition toutes les commandes sans risquer l'oubli de déclaration du lien.
 [ ] MOD : Déporter le calcul du score côté serveur pour éviter les applications frauduleuses et les décalages de version en cas de màj de la méthode de calcul de score. Le client soumet son mot, le serveur valide que c'est bien à lui de jouer, que les celle mot est valide et que les cellules peuvent être sélectionnées (murs, types de cellule...) et correspondent bien au mot soumis, puis il modifie les scores et l'état de la partie et notifie les joueurs du coup joué.
 	- Idem pour le calcul du joueur/tour/round actuels
 	- Idem pour la màj de la liste des mots joués
-[ ] DEV : Tester et évaluer :
-	- http://mongolink.org/
-	- http://jongo.org/
-	- https://github.com/dadastream/lib-mongomapper
-	- D'autres sur http://docs.mongodb.org/ecosystem/drivers/java/

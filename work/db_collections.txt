@@ -17,7 +17,7 @@ games : [						// Parties
 			createTime : date,	// Date/heure de création de la partie
 			startTime : date,	// Date/heure de début du partie. Si null, alors la partie n'a pas encore débuté et des joueurs peuvent la rejoindre.
 			endTime : date,		// Date où la partie prend fin (dépend du temps de jeu choisi et de la date du dernier coup)
-			lastUpdateTime : date,	// Date/heure de la dernière mise à jour de la partie
+			modCount : int		// Compteur de modifications, modifié à chaque fois que la partie est mise à jour. Le client peut juste vérifier que son modCount en cache est le même pour voir s'il y a eut une modification
 		},
 		cinematic : {
 			curRound : integer,
