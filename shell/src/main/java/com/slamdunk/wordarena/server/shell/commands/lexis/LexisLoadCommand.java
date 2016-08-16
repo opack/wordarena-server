@@ -50,7 +50,7 @@ public class LexisLoadCommand extends AbstractShellCommand {
 		builder.add(PARAM_MIN_WORD_LENGTH, Integer.parseInt(minWordLength));
 		JsonObject command = builder.build();
 		
-		// Envoie de la commande au serveur
+		// Envoi de la commande au serveur
 		return sendCommand(COMMAND_NAME, command) != null;
 	}
 }
