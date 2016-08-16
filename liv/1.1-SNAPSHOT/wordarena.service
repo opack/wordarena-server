@@ -1,0 +1,10 @@
+[Unit]
+Description=WordArena Server
+After=network.target
+
+[Service]
+User=wordarena
+ExecStart=java -jar /opt/wordarena/wordarenad.jar 2>&1 >> /var/log/wordarena/wordarenad.log
+
+[Install]
+WantedBy=multi-user.target
