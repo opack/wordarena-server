@@ -50,7 +50,7 @@ public class LexisAddCommand extends AbstractShellCommand {
 		builder.add(PARAM_WORD, word.toUpperCase());
 		JsonObject command = builder.build();
 		
-		// Envoie de la commande au serveur
+		// Envoi de la commande au serveur
 		return sendCommand(COMMAND_NAME, command) != null;
 	}
 }
