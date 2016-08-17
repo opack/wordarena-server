@@ -32,6 +32,7 @@
             </plugin>
 			
 			<!-- Ajout du répertoire resources aux sources du projet -->
+			<!--
 			<plugin>
 			  	<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
@@ -50,7 +51,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 			
 			<!-- Modification du nom du projet généré, pour faire joli et
 			homogène avec les projets de la partie cliente -->
@@ -63,7 +64,7 @@
 				</configuration>
 			</plugin>
 			
-			<!-- Crée un jar exécutable qui lancera le shell -->
+			<!-- Crée un jar exécutable qui lancera le service -->
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>

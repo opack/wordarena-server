@@ -31,27 +31,6 @@
                 </configuration>
             </plugin>
 			
-			<!-- Ajout du répertoire resources aux sources du projet -->
-			<plugin>
-			  	<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.9.1</version>
-				<executions>
-					<execution>
-						<id>add-source</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-source</goal>
-						</goals>
-						<configuration>
-						<sources>
-							<source>resources</source>
-						</sources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			
 			<!-- Modification du nom du projet généré, pour faire joli et
 			homogène avec les projets de la partie cliente -->
 			<plugin>

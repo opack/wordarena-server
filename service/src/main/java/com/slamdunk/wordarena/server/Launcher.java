@@ -11,22 +11,27 @@ public class Launcher {
 	}
 	
 	public static void main(String[] args) {
+		if (args.length != 1) {
+			System.err.println("Please specify the configuration file path and name.");
+			System.exit(1);
+		}
+
 		Launcher launcher = new Launcher();
-		launcher.launch();
+		launcher.launch(args[0]);
 	}
 	
-	public void launch() {
+	public void launch(String configFile) {
 		System.out.println("Launching server...");
-		if (loadConfig()) {
+		if (loadConfig(configFile)) {
 			startServer();
 		}
 	}
 	
-	private boolean loadConfig() {
+	private boolean loadConfig(String configFile) {
 		// Ouvre le fichier de propriétés
 		Properties properties = new Properties();
 		try {
-			properties.load(ClassLoader.getSystemResourceAsStream("server.properties"));
+			properties.load(ClassLoader.getSystemResourceAsStream(configFile));
 			
 			// Récupère la configuration du serveur
 			ServerConfig config = new ServerConfig();

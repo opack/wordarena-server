@@ -33,6 +33,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="distribution" target="1.5" />
       <module name="server" target="1.5" />
       <module name="service" target="1.7" />
       <module name="shell" target="1.7" />
