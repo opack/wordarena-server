@@ -15,16 +15,16 @@ find . -name "*.sh" -exec chmod +x {} \;
 ./create_user_wordarena.sh
 
 # Install Java
-#sudo -u wordarena ./install_java.sh
+sudo -u wordarena ./install_java.sh
 
 # Install MongoDB
-#sudo -u wordarena ./install_mongodb.sh
+sudo -u wordarena ./install_mongodb.sh
 
 # Configure git
-#sudo -u wordarena ./setup_git.sh
+sudo -u wordarena ./setup_git.sh
 
 # Fetch wordarena distro
-#sudo -u wordarena ./fetch_liv.sh
+sudo -u wordarena ./fetch_liv.sh
 
 # Install Wordarena service
-#sudo -u wordarena ./install_wordarena.sh
+sudo -u wordarena ./install_wordarena.sh
