@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="54ed8b19-1ab4-4312-a43e-78edcd4fe00c" name="Default" comment="">
+    <list default="true" id="54ed8b19-1ab4-4312-a43e-78edcd4fe00c" name="Default" comment="MOD : Scripts de préparation de machine">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bin/wordarenad.jar" afterPath="$PROJECT_DIR$/dist/bin/wordarenad.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bin/wordarenas.jar" afterPath="$PROJECT_DIR$/dist/bin/wordarenas.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/admin/prepare_new_machine.sh" afterPath="$PROJECT_DIR$/dist/admin/prepare_new_machine.sh" />
@@ -32,30 +32,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="prepare_new_machine.sh" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/distribution/src/main/resources/admin/prepare_new_machine.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.28266034">
-              <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create_user_wordarena.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/distribution/src/main/resources/admin/create_user_wordarena.sh">
+        <entry file="file://$PROJECT_DIR$/dist/admin/prepare_new_machine.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fetch_liv.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/distribution/src/main/resources/admin/fetch_liv.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="11" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -582,7 +562,13 @@
       <option name="project" value="LOCAL" />
       <updated>1471609020032</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="MOD : Scripts de préparation de machine">
+      <created>1471609256156</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1471609256156</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -636,14 +622,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/distribution/src/main/resources/admin/install_mongodb.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/distribution/src/main/resources/admin/install_wordarena.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -998,6 +976,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/distribution/src/main/resources/admin/prepare_new_machine.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08076009">
+          <caret line="4" column="33" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/distribution/src/main/resources/admin/create_user_wordarena.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2624703">
+          <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/distribution/src/main/resources/admin/fetch_liv.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1006,18 +1000,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/distribution/src/main/resources/admin/create_user_wordarena.sh">
+    <entry file="file://$PROJECT_DIR$/dist/admin/prepare_new_machine.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/distribution/src/main/resources/admin/prepare_new_machine.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28266034">
-          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

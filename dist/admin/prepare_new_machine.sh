@@ -2,6 +2,7 @@
 
 # Create a wordarena user and log with it
 wget https://raw.githubusercontent.com/opack/wordarena-server/master/dist/admin/create_user_wordarena.sh
+chmod +x create_user_wordarena.sh
 ./create_user_wordarena.sh
 
 # Download all scripts
