@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54ed8b19-1ab4-4312-a43e-78edcd4fe00c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bin/wordarenad.jar" afterPath="$PROJECT_DIR$/dist/bin/wordarenad.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bin/wordarenas.jar" afterPath="$PROJECT_DIR$/dist/bin/wordarenas.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/admin/prepare_new_machine.sh" afterPath="$PROJECT_DIR$/dist/admin/prepare_new_machine.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="server.iws" />
@@ -568,7 +571,13 @@
       <option name="project" value="LOCAL" />
       <updated>1471607566860</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="MOD : Scripts de préparation de machine">
+      <created>1471607644422</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1471607644422</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
