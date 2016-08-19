@@ -37,6 +37,38 @@
 
     <build>
         <plugins>
+            <!-- Configure the clean plugin to also delete the "dist" directory -->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${distDirectory}</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+
+                <!-- Also delete "dist" directory on every package, in case
+                phase clean is not called at the same time -->
+                <executions>
+                    <execution>
+                        <id>clean-dist</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                        <configuration>
+                            <filesets>
+                                <fileset>
+                                    <directory>${distDirectory}</directory>
+                                </fileset>
+                            </filesets>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Build the distribution directory -->
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
@@ -56,6 +88,7 @@
                 </executions>
             </plugin>
 
+            <!-- Copy the distribution files to the "dist" directory-->
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.0.1</version>
@@ -72,11 +105,15 @@
                                     <directory>${basedir}/target/${project.build.finalName}</directory>
                                 </resource>
                             </resources>
-                            <outputDirectory>../liv</outputDirectory>
+                            <outputDirectory>${distDirectory}</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+
+    <properties>
+        <distDirectory>../dist</distDirectory>
+    </properties>
 </project>

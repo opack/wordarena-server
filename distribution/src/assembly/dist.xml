@@ -20,14 +20,14 @@
             <includes>
                 <include>wordarenad.jar</include>
             </includes>
-            <outputDirectory>/</outputDirectory>
+            <outputDirectory>/bin/</outputDirectory>
         </fileSet>
         <fileSet>
             <directory>../shell/target</directory>
             <includes>
                 <include>wordarenas.jar</include>
             </includes>
-            <outputDirectory>/</outputDirectory>
+            <outputDirectory>/bin/</outputDirectory>
         </fileSet>
     </fileSets>
 </assembly>
