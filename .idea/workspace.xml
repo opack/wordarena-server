@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54ed8b19-1ab4-4312-a43e-78edcd4fe00c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/distribution/src/main/resources/admin/prepare_new_machine.sh" afterPath="$PROJECT_DIR$/distribution/src/main/resources/admin/prepare_new_machine.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="server.iws" />
@@ -32,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/distribution/src/main/resources/admin/prepare_new_machine.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.060570072">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="104" />
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -563,7 +562,13 @@
       <option name="project" value="LOCAL" />
       <updated>1471606886902</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="MOD : Scripts de préparation de machine">
+      <created>1471607566860</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1471607566860</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -998,7 +1003,7 @@
     <entry file="file://$PROJECT_DIR$/distribution/src/main/resources/admin/prepare_new_machine.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.060570072">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="104" />
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
