@@ -1,6 +1,10 @@
 package com.slamdunk.wordarena.server;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Properties;
 
 public class Launcher {
@@ -31,18 +35,17 @@ public class Launcher {
 		// Ouvre le fichier de propriétés
 		Properties properties = new Properties();
 		try {
-			properties.load(ClassLoader.getSystemResourceAsStream(configFile));
+			properties.load(new FileInputStream(configFile));
 			
 			// Récupère la configuration du serveur
 			ServerConfig config = new ServerConfig();
 			
 			config.serverAddress = properties.getProperty("server.address");
 			config.serverPort = Integer.parseInt(properties.getProperty("server.port"));
-			
-			config.mongoDbExec = properties.getProperty("mongodb.exec");
+
 			config.mongoDbAddress = properties.getProperty("mongodb.address");
 			config.mongoDbPort = Integer.parseInt(properties.getProperty("mongodb.port"));
-			
+
 			config.logFile = properties.getProperty("logfile");
 			
 			// Passe la config au serveur
@@ -74,7 +77,7 @@ public class Launcher {
 				} else {
 					System.out.println("ERROR : An error occurred while starting server. Please check log for more details.");
 				}
-			};
+			}
 		}.start();
 		
 		return true;

@@ -1,3 +1,4 @@
+[ ] ADD : Service : Utiliser le fichier de log mentionné dans le config.properties
 [ ] ADD : Service : Utiliser l'API Service Provider pour implémenter les commandes
 	Tuto : http://thecodersbreakfast.net/index.php?post/2008/12/26/Java-%3A-pr%C3%A9sentation-du-Service-Provider-API
 [ ] ADD : Service : La commande SERVER_STATUS doit retourner la version du serveur (idéalement tiré du MANIFEST.MF)

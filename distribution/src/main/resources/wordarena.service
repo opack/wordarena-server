@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 User=wordarena
-ExecStart=/usr/bin/java -jar /opt/wordarena/wordarenad.jar 2>&1 >> /var/log/wordarena/wordarenad.log
+ExecStart=/usr/bin/java -jar /opt/wordarena/wordarenad.jar /opt/wordarena/config.properties
 
 [Install]
 WantedBy=multi-user.target
