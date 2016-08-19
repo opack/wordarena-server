@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Create a wordarena user and log with it
+wget https://raw.githubusercontent.com/opack/wordarena-server/master/dist/admin/create_user_wordarena.sh
+./create_user_wordarena.sh
+
 # Download all scripts
-sudo -u wordarena wget https://raw.githubusercontent.com/opack/wordarena-server/master/dist/admin/create_user_wordarena.sh
 sudo -u wordarena wget https://raw.githubusercontent.com/opack/wordarena-server/master/dist/admin/install_java.sh
 sudo -u wordarena wget https://raw.githubusercontent.com/opack/wordarena-server/master/dist/admin/install_mongodb.sh
 sudo -u wordarena wget https://raw.githubusercontent.com/opack/wordarena-server/master/dist/admin/setup_git.sh
@@ -10,9 +13,6 @@ sudo -u wordarena wget https://raw.githubusercontent.com/opack/wordarena-server/
 
 # Make all scripts executable
 find . -name "*.sh" -exec chmod +x {} \;
-
-# Create a wordarena user and log with it
-./create_user_wordarena.sh
 
 # Install Java
 sudo -u wordarena ./install_java.sh
