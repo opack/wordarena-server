@@ -1,0 +1,10 @@
+[Unit]
+Description=WordArena Server
+After=network.target
+
+[Service]
+User=wordarena
+ExecStart=/usr/bin/java -jar /opt/wordarena/bin/wordarenad.jar /opt/wordarena/config.properties
+
+[Install]
+WantedBy=multi-user.target
