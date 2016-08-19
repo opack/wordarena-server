@@ -11,7 +11,7 @@ sudo apt-get update
 sudo apt-get install -y mongodb-org
 
 # Copy service file
-sudo cp /opt/wordarena/admin/wordarena.service /etc/systemd/system/wordarena.service
+sudo cp /opt/wordarena/admin/mongodb.service /etc/systemd/system/mongodb.service
 
 # Reload deamon files
 systemctl daemon-reload
