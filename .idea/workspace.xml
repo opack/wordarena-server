@@ -34,8 +34,8 @@
       <file leaf-file-name="prepare_new_machine.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/distribution/src/main/resources/admin/prepare_new_machine.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5855107">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.16152018">
+              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -570,7 +570,13 @@
       <option name="project" value="LOCAL" />
       <updated>1471608381883</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="MOD : Scripts de préparation de machine">
+      <created>1471608548718</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1471608548718</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1004,8 +1010,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/distribution/src/main/resources/admin/prepare_new_machine.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5855107">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.16152018">
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
           <folding />
         </state>
       </provider>
