@@ -5,7 +5,7 @@
 systemctl stop wordarena
 
 # Backup the current version
-SUFFIX=`date +%Y%m%d`
+SUFFIX=`date +%Y%m%d_%H%M%S`
 sudo mv /opt/wordarena /opt/wordarena.${SUFFIX}
 
 # Fetch the last version
