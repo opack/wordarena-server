@@ -12,4 +12,5 @@
 adduser wordarena
 
 # Authorize this user to run sudo commands
-usermod -aG sudo $WORDARENA_USER
+#usermod -aG sudo $WORDARENA_USER
+usermod -aG sudo wordarena
