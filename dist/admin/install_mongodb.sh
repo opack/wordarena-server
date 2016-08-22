@@ -13,9 +13,6 @@ sudo apt-get install -y mongodb-org
 # Copy service file
 sudo cp /opt/wordarena/admin/mongodb.service /etc/systemd/system/mongodb.service
 
-# Reload deamon files
-systemctl daemon-reload
-
 # Start service
 sudo systemctl start mongodb
 
