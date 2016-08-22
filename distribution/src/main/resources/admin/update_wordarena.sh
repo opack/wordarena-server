@@ -1,7 +1,7 @@
 #!/bin/bash
 # Updates wordarena using git dist project
 
-# Stop the service (nécessite la saisie du mdp wordarena)
+# Stop the service
 systemctl stop wordarena
 
 # Backup the current version
