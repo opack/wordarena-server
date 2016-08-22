@@ -10,7 +10,7 @@
 wget https://raw.githubusercontent.com/opack/wordarena-server/master/dist/admin/install_java.sh
 wget https://raw.githubusercontent.com/opack/wordarena-server/master/dist/admin/install_mongodb.sh
 wget https://raw.githubusercontent.com/opack/wordarena-server/master/dist/admin/setup_git.sh
-wget https://raw.githubusercontent.com/opack/wordarena-server/master/dist/admin/fetch_liv.sh
+wget https://raw.githubusercontent.com/opack/wordarena-server/master/dist/admin/fetch_dist.sh
 wget https://raw.githubusercontent.com/opack/wordarena-server/master/dist/admin/install_wordarena.sh
 
 # Make all scripts executable

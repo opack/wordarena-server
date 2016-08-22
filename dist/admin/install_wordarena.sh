@@ -5,8 +5,7 @@
 sudo cp /opt/wordarena/admin/wordarena.service /etc/systemd/system/wordarena.service
 
 # Reload deamon files
-# Ne fonctionne pas car nécessite une interaction pour saisir le password de wordarena
-#systemctl daemon-reload
+systemctl daemon-reload
 
 # Start service
 sudo systemctl start wordarena
