@@ -5,7 +5,7 @@
 #chmod +x create_user_wordarena.sh
 #./create_user_wordarena.sh
 #sudo -i -u wordarena
-curl -sSL https://raw.githubusercontent.com/opack/wordarena-server/master/dist/admin/create_user_wordarena.sh | sh
+#curl -sSL https://raw.githubusercontent.com/opack/wordarena-server/master/dist/admin/create_user_wordarena.sh | sh
 
 # Download all scripts
 #wget https://raw.githubusercontent.com/opack/wordarena-server/master/dist/admin/install_java.sh
