@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="54ed8b19-1ab4-4312-a43e-78edcd4fe00c" name="Default" comment="MOD : Scripts de préparation de machine">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/distribution/src/main/resources/admin/fetch_dist.sh" />
-      <change type="DELETED" beforePath="D:\perso\workspaces\wordarena-server\dist\admin\fetch_liv.sh" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bin/wordarenad.jar" afterPath="$PROJECT_DIR$/dist/bin/wordarenad.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/bin/wordarenas.jar" afterPath="$PROJECT_DIR$/dist/bin/wordarenas.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/src/main/java/com/slamdunk/wordarena/server/commands/lexis/LexisFields.java" afterPath="$PROJECT_DIR$/service/src/main/java/com/slamdunk/wordarena/server/commands/lexis/LexisFields.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/shell/src/main/java/com/slamdunk/wordarena/server/shell/commands/lexis/LexisLoadCommand.java" afterPath="$PROJECT_DIR$/shell/src/main/java/com/slamdunk/wordarena/server/shell/commands/lexis/LexisLoadCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/src/main/java/com/slamdunk/wordarena/server/commands/lexis/LoadLexisExecutor.java" afterPath="$PROJECT_DIR$/service/src/main/java/com/slamdunk/wordarena/server/commands/lexis/LoadLexisExecutor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/launch_shell.sh" afterPath="$PROJECT_DIR$/dist/launch_shell.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/distribution/src/main/resources/launch_shell.sh" afterPath="$PROJECT_DIR$/distribution/src/main/resources/launch_shell.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/admin/prepare_new_machine.sh" afterPath="$PROJECT_DIR$/dist/admin/prepare_new_machine.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/distribution/src/main/resources/admin/prepare_new_machine.sh" afterPath="$PROJECT_DIR$/distribution/src/main/resources/admin/prepare_new_machine.sh" />
+    <list default="true" id="54ed8b19-1ab4-4312-a43e-78edcd4fe00c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/admin/fetch_dist.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dist/admin/update_wordarena.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="D:\perso\workspaces\wordarena-server\distribution\src\main\resources\admin\fetch_liv.sh" afterPath="$PROJECT_DIR$/distribution/src/main/resources/admin/update_wordarena.sh" />
     </list>
     <ignored path="server.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -863,7 +853,13 @@
       <option name="project" value="LOCAL" />
       <updated>1471855363384</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="MOD : Scripts de préparation de machine">
+      <created>1471857989595</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1471857989595</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
