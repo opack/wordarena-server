@@ -2,6 +2,7 @@ package com.slamdunk.wordarena.server.commands.lexis;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -23,6 +24,9 @@ import com.slamdunk.wordarena.server.database.LexisService;
 public class LoadLexisExecutor extends AbstractCommandExecutor {
 	public static final String PARAM_MIN_WORD_LENGTH = "minWordLength";
 	public static final int DEFAULT_MIN_WORD_LENGTH = 2;
+
+	public static final String PARAM_PAGE_SIZE = "pageSize";
+	public static final int DEFAULT_PAGE_SIZE = 100;
 	
 	/**
 	 * Langue pour laquelle recharger le lexique
@@ -33,6 +37,11 @@ public class LoadLexisExecutor extends AbstractCommandExecutor {
 	 * Chemin absolu du fichier contenant le lexique
 	 */
 	private String file;
+
+	/**
+	 * Taille d'une page de mots à charger
+	 */
+	private int pageSize;
 	
 	/**
 	 * Taille minimale des mots à inclure
@@ -48,53 +57,73 @@ public class LoadLexisExecutor extends AbstractCommandExecutor {
 	public void setParameters(JsonObject parameters) {
 		lang = parameters.getString(LexisFields.PARAM_LANG, LexisFields.DEFAULT_LANG);
 		file = parameters.getString(LexisFields.PARAM_FILE, "lexis" + lang + ".txt");
+		pageSize = parameters.getInt(LexisFields.PARAM_PAGE_SIZE, DEFAULT_PAGE_SIZE);
 		minWordLength = parameters.getInt(PARAM_MIN_WORD_LENGTH, DEFAULT_MIN_WORD_LENGTH);
 	}
 	
 	@Override
 	public void execute(Server server) {
-		boolean done;
+		boolean done = false;
 		String details = null;
-		
-		// Lecture des mots à ajouter
 		List<String> words = new ArrayList<>();
-		try {
-			
-			loadFromFile(words);
-			done = true;
-			
-		} catch (UnsupportedEncodingException e) {
-			System.out.println("ERROR : Unsupported encoding " + e.getMessage());
-			done = false;
-			details = e.getMessage();
-		} catch (IOException e) {
-			System.out.println("ERROR : Exception while reading lexis file for lang " + lang);
-			done = false;
-			details = e.getMessage();
-		}
-		
-		// Vidage du lexique mentionné si le lexique a bien été chargé
-		if (done) {
+
+		try (
+				InputStream lexisStream = new FileInputStream(file);
+				BufferedReader reader = new BufferedReader(new InputStreamReader(lexisStream, "UTF-8"))
+		){
+			// Vidage du lexique mentionné
 			LexisService lexis = new LexisService(server.getDatabaseClient(), lang);
 			if (lexis.clear()) {
 				System.out.println("INFO : Lexis for language " + lang + " has been cleared.");
 			} else {
 				System.out.println("WARN : Lexis for language " + lang + " could not be cleared.");
 			}
-			
-			// Ajout des mots
-			try {
-				lexis.addWords(words);
-				
-				System.out.println("INFO : " + words.size() + " words have been added.");
-				done = true;
-			} catch (WordArenaServerException e) {
-				System.out.println("ERROR : Error while inserting words (" + e.getMessage() + ").");
-				done = false;
-				details = e.getMessage();
+
+			do {
+				// Lecture d'une page de mots
+				words.clear();
+				String extracted;
+
+				for (int count = 0; count < pageSize; count++) {
+					extracted = reader.readLine();
+					if (extracted == null) {
+						break;
+					}
+
+					words.add(extracted);
+				}
+
+				// Ajout des mots
+				if (words.isEmpty()) {
+					break;
+				}
+				try {
+					lexis.addWords(words);
+
+					System.out.println("INFO : " + words.size() + " words have been added.");
+					done = true;
+				} catch (WordArenaServerException e) {
+					System.out.println("ERROR : Error while inserting words (" + e.getMessage() + ").");
+					done = false;
+					details = e.getMessage();
+				}
 			}
+			while(!words.isEmpty());
+
+		} catch (FileNotFoundException e) {
+			System.out.println("ERROR : Lexis file " + file + " could not be found (" + e.getMessage() + ").");
+			done = false;
+			details = e.getMessage();
+		} catch (UnsupportedEncodingException e) {
+			System.out.println("ERROR : Unsupported encoding " + e.getMessage());
+			done = false;
+			details = e.getMessage();
+		} catch (IOException e) {
+			e.printStackTrace();
+			done = false;
+			details = e.getMessage();
 		}
-		
+
 		// Prépare le résultat
 		buildResult(done, details);
 	}

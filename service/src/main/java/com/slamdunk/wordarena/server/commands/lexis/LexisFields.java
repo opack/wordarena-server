@@ -25,6 +25,8 @@ public class LexisFields {
 	public static final String DEFAULT_LANG = "FR";
 
 	public static final String PARAM_FILE = "file";
+
+	public static final String PARAM_PAGE_SIZE = "pageSize";
 	
 	public static final String PARAM_WORD = "word";
 	public static final String DEFAULT_WORD = "";
