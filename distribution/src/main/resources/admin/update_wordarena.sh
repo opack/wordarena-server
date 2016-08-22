@@ -6,10 +6,10 @@ systemctl stop wordarena
 
 # Backup the current version
 SUFFIX=`date +%Y%m%d`
-mv /opt/wordarena /opt/wordarena.${SUFFIX}
+sudo mv /opt/wordarena /opt/wordarena.${SUFFIX}
 
 # Fetch the last version
-fetch_dist.sh
+/opt/wordarena.${SUFFIX}/admin/fetch_dist.sh
 
 # Install the service
-./install_wordarena.sh
+/opt/wordarena/admin/install_wordarena.sh
