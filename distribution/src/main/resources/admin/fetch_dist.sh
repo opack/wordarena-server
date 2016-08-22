@@ -27,5 +27,8 @@ git pull origin master
 mv dist/* .
 rm -r dist
 
+# Make all scripts executable
+find . -name "*.sh" -exec chmod +x {} \;
+
 # Go back to home directory
 cd ~

@@ -23,7 +23,7 @@ find . -name "*.sh" -exec chmod +x {} \;
 ./setup_git.sh
 
 # Fetch wordarena distro
-./fetch_liv.sh
+fetch_dist.sh
 
 # Install MongoDB
 ./install_mongodb.sh

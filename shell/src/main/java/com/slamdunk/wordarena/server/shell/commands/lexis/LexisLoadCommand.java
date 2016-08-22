@@ -15,11 +15,13 @@ import com.slamdunk.wordarena.server.shell.commands.AbstractShellCommand;
 public class LexisLoadCommand extends AbstractShellCommand {
 	private static final String COMMAND_NAME = "LEXIS_LOAD";
 	private static final String PARAM_LANG = "lang";
+	private static final String PARAM_FILE = "file";
 	private static final String PARAM_MIN_WORD_LENGTH = "minWordLength";
 	
 	@Override
 	public boolean execute(BufferedReader in) {
 		String lang;
+		String file;
 		String minWordLength;
 		try {
 			// Lecture du lexique à réinitialiser
@@ -28,6 +30,15 @@ public class LexisLoadCommand extends AbstractShellCommand {
 		
 			if (lang == null
 			|| lang.isEmpty()) {
+				return false;
+			}
+
+			// Lecture du chemin du lexique
+			System.out.print("   File to load : ");
+			file = in.readLine();
+
+			if (file == null
+			|| file.isEmpty()) {
 				return false;
 			}
 			
@@ -47,6 +58,7 @@ public class LexisLoadCommand extends AbstractShellCommand {
 		// Création de la commande
 		JsonObjectBuilder builder = Json.createObjectBuilder();
 		builder.add(PARAM_LANG, lang);
+		builder.add(PARAM_FILE, file);
 		builder.add(PARAM_MIN_WORD_LENGTH, Integer.parseInt(minWordLength));
 		JsonObject command = builder.build();
 		

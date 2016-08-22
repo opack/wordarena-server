@@ -1,6 +1,7 @@
 package com.slamdunk.wordarena.server.commands.lexis;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -27,6 +28,11 @@ public class LoadLexisExecutor extends AbstractCommandExecutor {
 	 * Langue pour laquelle recharger le lexique
 	 */
 	private String lang;
+
+	/**
+	 * Chemin absolu du fichier contenant le lexique
+	 */
+	private String file;
 	
 	/**
 	 * Taille minimale des mots à inclure
@@ -41,6 +47,7 @@ public class LoadLexisExecutor extends AbstractCommandExecutor {
 	@Override
 	public void setParameters(JsonObject parameters) {
 		lang = parameters.getString(LexisFields.PARAM_LANG, LexisFields.DEFAULT_LANG);
+		file = parameters.getString(LexisFields.PARAM_FILE, "lexis" + lang + ".txt");
 		minWordLength = parameters.getInt(PARAM_MIN_WORD_LENGTH, DEFAULT_MIN_WORD_LENGTH);
 	}
 	
@@ -50,7 +57,7 @@ public class LoadLexisExecutor extends AbstractCommandExecutor {
 		String details = null;
 		
 		// Lecture des mots à ajouter
-		List<String> words = new ArrayList<String>();
+		List<String> words = new ArrayList<>();
 		try {
 			
 			loadFromFile(words);
@@ -94,20 +101,17 @@ public class LoadLexisExecutor extends AbstractCommandExecutor {
 	
 	/**
 	 * Charge le lexique de la langue indiquée vers la liste spécifiée
-	 * @param lang
-	 * @param words
+	 * @param wordsListToFill Liste de mots à remplir
 	 * @throws IOException 
 	 */
 	private void loadFromFile(List<String> wordsListToFill) throws IOException {
-		final String lexisFilename = "lexis" + lang + ".txt";
-		InputStream lexisStream = ClassLoader.getSystemResourceAsStream(lexisFilename);
-		
 		try (
+			InputStream lexisStream = new FileInputStream(file);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(lexisStream, "UTF-8"))
 		){
 			
 			wordsListToFill.clear();
-			String extracted = null;
+			String extracted;
 			
 			while ((extracted = reader.readLine()) != null) {
 				if (extracted.length() >= minWordLength) {
