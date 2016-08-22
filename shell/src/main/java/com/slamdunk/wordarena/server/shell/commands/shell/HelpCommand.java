@@ -27,6 +27,7 @@ public class HelpCommand extends AbstractShellCommand {
 		help.append("Execute commands on server\n");
 		help.append("--------------------------\n");
 		help.append(" - execute       : Executes the specified command on the server.\n");
+		help.append("\n");
 		help.append("Manages lexises\n");
 		help.append("--------------------------\n");
 		help.append(" - lexisLoad     : Clears and reloads the default lexis file for the specified language.\n");
